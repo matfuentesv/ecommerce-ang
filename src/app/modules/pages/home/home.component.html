@@ -9,7 +9,6 @@
 <div class="container mt-5">
   <h2 class="text-center">Productos Destacados</h2>
   <div id="featuredProductsCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
-    <div class="product-card">
       <div class="row">
         <div class="col-md-4" *ngFor="let product of products">
           <div class="card mb-4 product-card">
@@ -17,16 +16,19 @@
             <div class="card-body">
               <span class="badge badge-success">Llega hoy</span>
               <h5 class="card-title">{{product.name}}</h5>
+              <p class="card-text">{{product.description}}</p>
               <p class="card-price">{{product.price | currency}} <span class="badge bg-danger">${{product.discount}}%</span></p>
-              <p class="card-text"><del>{{product.originalPrice}}</del></p>
+              <p class="card-text"><del>{{product.originalPrice | currency}}</del></p>
               <div class="rating">
-                 ({{product.reviews}})
+                <ng-container *ngFor="let star of getStars(product.rating)">
+                  <i [ngClass]="star"></i>
+                </ng-container>
+                ({{ product.reviews }})
               </div>
               <button class="btn btn-primary btn-block">Agregar al Carrito</button>
             </div>
           </div>
         </div>
-      </div>
     </div>
     <a class="carousel-control-prev" href="#featuredProductsCarousel" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>

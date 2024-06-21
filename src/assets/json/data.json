@@ -273,16 +273,28 @@
   ],
   "outstanding": [
     {
-      "name": "Teléfono Huawei",
+      "name": " Huawei P30 Pro",
       "price": 150000,
       "discount": 10,
-      "description": "By Huawei.",
+      "description": "Por Huawei",
       "image": "../assets/images/huawei.jpg",
       "category": "Cell Phones",
       "originalPrice": 170000,
-      "rating": "★★★★☆",
+      "rating": 1,
       "reviews": 40,
       "quantity": 25
+    },
+    {
+      "name": "Cafetera Wurden",
+      "price": 390000,
+      "discount": 10,
+      "description": "Cafetera.",
+      "image": "../assets/images/wurden.jpg",
+      "category": "Coffee Makers",
+      "originalPrice": 430000,
+      "rating": 3,
+      "reviews": 20,
+      "quantity": 8
     },
     {
       "name": "MacBook Pro",
@@ -292,7 +304,7 @@
       "image": "../assets/images/mac.jpg",
       "category": "Notebooks",
       "originalPrice": 1260000,
-      "rating": "★★★★★",
+      "rating": 4,
       "reviews": 30,
       "quantity": 8
     },
@@ -304,7 +316,7 @@
       "image": "../assets/images/tv.jpg",
       "category": "Electronics",
       "originalPrice": 620000,
-      "rating": "★★★★★",
+      "rating": 2,
       "reviews": 40,
       "quantity": 12
     },
@@ -316,7 +328,7 @@
       "image": "../assets/images/watch.jpg",
       "category": "Electronics",
       "originalPrice": 220000,
-      "rating": "★★★★★",
+      "rating": 1,
       "reviews": 25,
       "quantity": 20
     }
