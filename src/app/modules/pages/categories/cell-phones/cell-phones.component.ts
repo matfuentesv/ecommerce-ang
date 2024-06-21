@@ -1,12 +1,35 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DataService} from "../../../../core/services/data/data.service";
+import {GridComponent} from "../../../../shared/components/grid/grid.component";
 
 @Component({
   selector: 'app-cell-phones',
   standalone: true,
-  imports: [],
+  imports: [GridComponent],
   templateUrl: './cell-phones.component.html',
   styleUrl: './cell-phones.component.css'
 })
-export class CellPhonesComponent {
+export class CellPhonesComponent implements OnInit {
+
+
+  products: any[] = [];
+  chunkedProducts: any[][] = [];
+
+  constructor(private productService: DataService) {}
+
+  ngOnInit(): void {
+    this.productService.getProducts().subscribe((product) => {
+      this.products = product.cellPhones;
+      this.chunkedProducts = this.chunkArray(this.products, 3);
+    });
+  }
+
+  chunkArray(myArray: any[], chunk_size: number): any[][] {
+    let results = [];
+    while (myArray.length) {
+      results.push(myArray.splice(0, chunk_size));
+    }
+    return results;
+  }
 
 }

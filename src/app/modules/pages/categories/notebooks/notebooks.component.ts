@@ -1,14 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from "../../../../core/services/data/data.service";
 import {CurrencyPipe, NgClass, NgForOf} from "@angular/common";
+import {GridComponent} from "../../../../shared/components/grid/grid.component";
 
 @Component({
   selector: 'app-notebooks',
   standalone: true,
   imports: [
-    CurrencyPipe,
-    NgForOf,
-    NgClass
+    GridComponent
   ],
   templateUrl: './notebooks.component.html',
   styleUrl: './notebooks.component.css'
@@ -24,7 +23,6 @@ export class NotebooksComponent implements OnInit{
     this.productService.getProducts().subscribe((product) => {
       this.products = product.notebooks;
       this.chunkedProducts = this.chunkArray(this.products, 3);
-      console.log(this.chunkedProducts);
     });
   }
 
@@ -35,9 +33,4 @@ export class NotebooksComponent implements OnInit{
     }
     return results;
   }
-
-  getStars(rating: number): string[] {
-    return Array.from({length: 5}, (_, i) => i < rating ? 'fas fa-star text-warning' : 'far fa-star text-warning');
-  }
-
-  }
+}
