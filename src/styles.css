@@ -147,17 +147,7 @@ body {
   color:white;
 }
 
-.modal-content {
-  padding: 20px;
-}
 
-.modal-header {
-  border-bottom: none;
-}
-
-.modal-footer {
-  border-top: none;
-}
 
 @media (max-width: 768px) {
   .navbar-custom .navbar-brand {

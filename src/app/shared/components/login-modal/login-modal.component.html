@@ -1,0 +1,29 @@
+<div  id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Inicia sesión para comprar</h5>
+        <button type="button" (click)="close()" class="btn-close mb-5" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="loginForm">
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" required>
+            <a href="./templates/recover_password.html" class="d-block mt-2">¿Olvidaste tu contraseña?</a>
+          </div>
+          <button type="button" onclick="login()" class="btn btn-primary w-100">Iniciar Sesión</button>
+        </form>
+        <div class="text-center mt-3">
+          <p>¿Aun no tienes cuenta?</p>
+          <a href="./templates/register.html">Crear una cuenta nueva</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
