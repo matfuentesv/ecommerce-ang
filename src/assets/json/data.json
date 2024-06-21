@@ -297,6 +297,18 @@
       "quantity": 8
     },
     {
+      "name": "Dell Inspiron 15",
+      "price": 549990,
+      "discount": 10,
+      "description": "Por Dell.",
+      "image": "../assets/images/dell.jpg",
+      "category": "Noteboks",
+      "originalPrice": 610000,
+      "rating": 3,
+      "reviews": 20,
+      "quantity": 8
+    },
+    {
       "name": "MacBook Pro",
       "price": 1200000,
       "discount": 5,
