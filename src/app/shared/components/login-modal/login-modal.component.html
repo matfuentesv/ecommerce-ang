@@ -15,13 +15,13 @@
           <div class="mb-3">
             <label for="password" class="form-label">Contraseña</label>
             <input type="password" class="form-control" id="password" required>
-            <a href="./templates/recover_password.html" class="d-block mt-2">¿Olvidaste tu contraseña?</a>
+            <a (click)="recoverPassword()" class="d-block mt-2 text-center">¿Olvidaste tu contraseña?</a>
           </div>
-          <button type="button" onclick="login()" class="btn btn-primary w-100">Iniciar Sesión</button>
+          <button type="button"  class="btn btn-primary w-100">Iniciar Sesión</button>
         </form>
         <div class="text-center mt-3">
           <p>¿Aun no tienes cuenta?</p>
-          <a href="./templates/register.html">Crear una cuenta nueva</a>
+          <a (click)="register()" class="d-block mt-2">Crear una cuenta nueva</a>
         </div>
       </div>
     </div>

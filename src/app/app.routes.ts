@@ -41,9 +41,15 @@ export const routes: Routes = [
       {
         path: 'cart',
         loadChildren: () => import('./modules/pages/cart').then(r => r.cartRoutes)
+      },
+      {
+        path: 'recover-password',
+        loadChildren: () => import('./modules/pages/recover-password').then(r => r.recoverPasswordRoutes)
+      },
+      {
+        path: 'register',
+        loadChildren: () => import('./modules/pages/register').then(r => r.registerRoutes)
       }
-
-
     ]
   }
 ];
