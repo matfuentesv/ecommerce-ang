@@ -1,0 +1,61 @@
+.navbar-custom {
+  background-color: #28a745; /* Color de fondo verde */
+  width: 100%;
+}
+
+.navbar-brand span {
+  font-weight: bold;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  color: white;
+}
+
+.menu-dropdown {
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  top: 100%;
+  left: 0;
+}
+
+.menu-container:hover .menu-dropdown {
+  display: block;
+}
+
+.submenu {
+  margin-left: 20px;
+}
+
+.navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ccc;
+}
+
+.user-options {
+  margin-left: auto;
+}
+
+.user-options .nav-link {
+  margin-right: 15px;
+}
+
+.user-options .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+}
+
+.text-white {
+  color: white !important;
+}

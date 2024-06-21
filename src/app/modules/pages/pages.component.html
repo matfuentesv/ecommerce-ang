@@ -1,49 +1,50 @@
 <nav class="navbar navbar-expand-lg navbar-custom">
-  <a class="navbar-brand" routerLink="/home">
-    <img src="../../../assets/images/elite-logo.jpg" alt="Elite Market" > Elite Market
+  <a class="navbar-brand d-flex align-items-center" routerLink="/home">
+    <img src="../../../assets/images/elite-logo.jpg" alt="Elite Market" class="me-2" style="height: 30px;">
+    <span class="text-white">Elite Market</span>
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav me-auto">
       <li class="nav-item menu-container">
-        <button class="menu-button">
+        <button class="menu-button btn btn-link text-white">
           <i class="fas fa-bars"></i> Menú
         </button>
         <div class="menu-dropdown">
-          <a href="#">Tecnología</a>
+          <a class="dropdown-item" href="#">Tecnología</a>
           <div class="submenu">
-            <a routerLink="/notebooks">Computadoras</a>
-            <a routerLink="/cell-phones">Celulares</a>
+            <a class="dropdown-item" routerLink="/notebooks">Computadoras</a>
+            <a class="dropdown-item" routerLink="/cell-phones">Celulares</a>
           </div>
-          <a href="#">Electrohogar</a>
+          <a class="dropdown-item" href="#">Electrohogar</a>
           <div class="submenu">
-            <a routerLink="/air-conditioning">Aire acondicionado</a>
-            <a routerLink="/coffee-makers">Cafeteras eléctricas</a>
+            <a class="dropdown-item" routerLink="/air-conditioning">Aire acondicionado</a>
+            <a class="dropdown-item" routerLink="/coffee-makers">Cafeteras eléctricas</a>
           </div>
-          <a routerLink="/admin" id="admin-menu-option" class="d-none">Administración</a>
+          <a class="dropdown-item" routerLink="/admin" id="admin-menu-option" class="d-none">Administración</a>
         </div>
       </li>
       <li class="nav-item pt-2">
-        <a class="nav-link" routerLink="/home">Inicio</a>
+        <a class="nav-link text-white" routerLink="/home">Inicio</a>
       </li>
     </ul>
-    <div class="user-options">
-      <a href="#" class="nav-link" data-toggle="modal" data-target="#loginModal" id="login-link"><i class="fas fa-user"></i> Hola, Inicia sesión</a>
+    <div class="user-options d-flex align-items-center ms-auto">
+      <a href="#" class="nav-link text-white me-3" data-bs-toggle="modal" data-bs-target="#loginModal" id="login-link"><i class="fas fa-user"></i> Hola, Inicia sesión</a>
       <div class="dropdown d-none" id="user-menu">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user"></i> Hola, <span id="userName">Usuario</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="userDropdown">
-          <a class="dropdown-item"  routerLink="/account">Mi cuenta</a>
+          <a class="dropdown-item" routerLink="/account">Mi cuenta</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" id="logout" onclick="logout()">Cerrar sesión</a>
+          <a class="dropdown-item" href="#" id="logout">Cerrar sesión</a>
         </div>
       </div>
-      <a routerLink="/cart" class="nav-link">
+      <a routerLink="/cart" class="nav-link text-white d-flex align-items-center">
         <i class="fas fa-shopping-cart"></i> Mis compras
-        <span class="badge badge-pill badge-danger" id="cart-count">0</span>
+        <span class="badge rounded-pill bg-danger ms-1" id="cart-count">13</span>
       </a>
     </div>
   </div>
