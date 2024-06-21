@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-custom">
-  <a class="navbar-brand" href="../index.html">
-    <img src="./assets/elite-logo.jpg" alt="Elite Market"> Elite Market
+  <a class="navbar-brand" routerLink="/home">
+    <img src="../../../assets/images/elite-logo.jpg" alt="Elite Market" > Elite Market
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -22,27 +22,29 @@
             <a routerLink="/air-conditioning">Aire acondicionado</a>
             <a routerLink="/coffee-makers">Cafeteras eléctricas</a>
           </div>
-          <a href="./admin.html" id="admin-menu-option" class="d-none">Administración</a>
+          <a routerLink="/admin" id="admin-menu-option" class="d-none">Administración</a>
         </div>
       </li>
       <li class="nav-item pt-2">
-        <a class="nav-link" href="../index.html">Inicio</a>
+        <a class="nav-link" routerLink="/home">Inicio</a>
       </li>
     </ul>
-    <div class="user-options ml-4">
+    <div class="user-options">
       <a href="#" class="nav-link" data-toggle="modal" data-target="#loginModal" id="login-link"><i class="fas fa-user"></i> Hola, Inicia sesión</a>
       <div class="dropdown d-none" id="user-menu">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user"></i> Hola, <span id="userName">Usuario</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="account.html">Mi cuenta</a>
-          <a class="dropdown-item" href="cart.html">Mis compras</a>
+          <a class="dropdown-item"  routerLink="/account">Mi cuenta</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#" id="logout" onclick="logout()">Cerrar sesión</a>
         </div>
       </div>
-      <a href="../templates/cart.html" class="nav-link"><i class="fas fa-shopping-cart"></i> Mis compras</a>
+      <a routerLink="/cart" class="nav-link">
+        <i class="fas fa-shopping-cart"></i> Mis compras
+        <span class="badge badge-pill badge-danger" id="cart-count">0</span>
+      </a>
     </div>
   </div>
 </nav>

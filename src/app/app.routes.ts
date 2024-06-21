@@ -28,8 +28,21 @@ export const routes: Routes = [
       },
       {
         path: 'air-conditioning',
-        loadChildren: () => import('./modules/pages/categories/air-conditioning-portable').then(r => r.appAirConditioningPortableRoutes)
+        loadChildren: () => import('./modules/pages/categories/air-conditioning').then(r => r.appAirConditioningRoutes)
+      },
+      {
+        path: 'admin',
+        loadChildren: () => import('./modules/pages/admin').then(r => r.adminRoutes)
+      },
+      {
+        path: 'account',
+        loadChildren: () => import('./modules/pages/account').then(r => r.accountRoutes)
+      },
+      {
+        path: 'cart',
+        loadChildren: () => import('./modules/pages/cart').then(r => r.cartRoutes)
       }
+
 
     ]
   }

@@ -1,0 +1,324 @@
+{
+  "notebooks": [
+    {
+      "name": "Asus Laptop",
+      "price": 750000,
+      "discount": 10,
+      "description": "Laptop de alto rendimiento adecuada para juegos y trabajo.",
+      "image": "../assets/asus.jpg",
+      "category": "Notebooks",
+      "originalPrice": 830000,
+      "rating": "★★★★☆",
+      "reviews": 45,
+      "quantity": 10
+    },
+    {
+      "name": "MacBook Pro",
+      "price": 1200000,
+      "discount": 5,
+      "description": "Laptop potente para profesionales.",
+      "image": "../assets/mac.jpg",
+      "category": "Notebooks",
+      "originalPrice": 1260000,
+      "rating": "★★★★★",
+      "reviews": 30,
+      "quantity": 8
+    },
+    {
+      "name": "Laptop Lenovo",
+      "price": 600000,
+      "discount": 10,
+      "description": "Laptop eficiente para trabajo y entretenimiento.",
+      "image": "../assets/lenovo.jpg",
+      "category": "Notebooks",
+      "originalPrice": 670000,
+      "rating": "★★★★☆",
+      "reviews": 35,
+      "quantity": 15
+    },
+    {
+      "name": "Laptop HP",
+      "price": 700000,
+      "discount": 10,
+      "description": "Laptop confiable y potente para el trabajo diario.",
+      "image": "../assets/hp.jpg",
+      "category": "Notebooks",
+      "originalPrice": 780000,
+      "rating": "★★★★☆",
+      "reviews": 45,
+      "quantity": 8
+    }
+  ],
+  "cellPhones": [
+    {
+      "name": "Bmobile Phone",
+      "price": 50000,
+      "discount": 15,
+      "description": "Teléfono inteligente asequible con características esenciales.",
+      "image": "../assets/bmobile.jpg",
+      "category": "Cell Phones",
+      "originalPrice": 59000,
+      "rating": "★★★☆☆",
+      "reviews": 30,
+      "quantity": 50
+    },
+    {
+      "name": "Huawei Phone",
+      "price": 150000,
+      "discount": 10,
+      "description": "Teléfono inteligente de alta calidad con funciones avanzadas.",
+      "image": "../assets/huawei.jpg",
+      "category": "Cell Phones",
+      "originalPrice": 170000,
+      "rating": "★★★★☆",
+      "reviews": 40,
+      "quantity": 25
+    },
+    {
+      "name": "Motorola Phone",
+      "price": 180000,
+      "discount": 10,
+      "description": "Teléfono inteligente con gran rendimiento.",
+      "image": "../assets/motorola.jpg",
+      "category": "Cell Phones",
+      "originalPrice": 200000,
+      "rating": "★★★★☆",
+      "reviews": 40,
+      "quantity": 30
+    },
+    {
+      "name": "Samsung Phone",
+      "price": 220000,
+      "discount": 10,
+      "description": "Teléfono inteligente con pantalla de alta resolución.",
+      "image": "../assets/samsung.jpg",
+      "category": "Cell Phones",
+      "originalPrice": 245000,
+      "rating": "★★★★☆",
+      "reviews": 28,
+      "quantity": 20
+    },
+    {
+      "name": "Xiaomi Phone",
+      "price": 200000,
+      "discount": 10,
+      "description": "Teléfono inteligente con excelente relación calidad-precio.",
+      "image": "../assets/xiom.jpg",
+      "category": "Cell Phones",
+      "originalPrice": 220000,
+      "rating": "★★★★☆",
+      "reviews": 30,
+      "quantity": 25
+    }
+  ],
+  "coffeeMakers": [
+    {
+      "name": "Cafetera Nescafé",
+      "price": 80000,
+      "discount": 10,
+      "description": "Prepara delicioso café en casa.",
+      "image": "../assets/nescafe.jpg",
+      "category": "Coffee Makers",
+      "originalPrice": 90000,
+      "rating": "★★★★☆",
+      "reviews": 20,
+      "quantity": 15
+    },
+    {
+      "name": "Cafetera Krups",
+      "price": 90000,
+      "discount": 5,
+      "description": "Cafetera profesional para tu cocina.",
+      "image": "../assets/krups.jpg",
+      "category": "Coffee Makers",
+      "originalPrice": 95000,
+      "rating": "★★★★★",
+      "reviews": 25,
+      "quantity": 10
+    },
+    {
+      "name": "Cafetera Oster",
+      "price": 85000,
+      "discount": 5,
+      "description": "Cafetera eficiente y rápida.",
+      "image": "../assets/oster.jpg",
+      "category": "Coffee Makers",
+      "originalPrice": 90000,
+      "rating": "★★★★☆",
+      "reviews": 25,
+      "quantity": 18
+    },
+    {
+      "name": "Cafetera DeLonghi",
+      "price": 90000,
+      "discount": 5,
+      "description": "Cafetera profesional para tu cocina.",
+      "image": "../assets/delonghi.jpg",
+      "category": "Coffee Makers",
+      "originalPrice": 95000,
+      "rating": "★★★★★",
+      "reviews": 25,
+      "quantity": 10
+    }
+  ],
+  "airConditioning": [
+    {
+      "name": "Aire Acondicionado Aus",
+      "price": 350000,
+      "discount": 15,
+      "description": "Aire acondicionado eficiente en energía para enfriar tu hogar.",
+      "image": "../assets/aus.jpg",
+      "category": "Air Conditioning",
+      "originalPrice": 410000,
+      "rating": "★★★★☆",
+      "reviews": 30,
+      "quantity": 5
+    },
+    {
+      "name": "Aire Acondicionado Clark",
+      "price": 380000,
+      "discount": 10,
+      "description": "Aire acondicionado potente con control remoto.",
+      "image": "../assets/clark.jpg",
+      "category": "Air Conditioning",
+      "originalPrice": 420000,
+      "rating": "★★★★★",
+      "reviews": 35,
+      "quantity": 8
+    },
+    {
+      "name": "Aire Acondicionado Gree",
+      "price": 350000,
+      "discount": 15,
+      "description": "Aire acondicionado eficiente en energía para enfriar tu hogar.",
+      "image": "../assets/gree.jpg",
+      "category": "Air Conditioning",
+      "originalPrice": 410000,
+      "rating": "★★★★☆",
+      "reviews": 30,
+      "quantity": 5
+    },
+    {
+      "name": "Aire Acondicionado Kendal",
+      "price": 380000,
+      "discount": 10,
+      "description": "Aire acondicionado potente con control remoto.",
+      "image": "../assets/kendal.jpg",
+      "category": "Air Conditioning",
+      "originalPrice": 420000,
+      "rating": "★★★★★",
+      "reviews": 35,
+      "quantity": 8
+    },
+    {
+      "name": "Aire Acondicionado Midea",
+      "price": 370000,
+      "discount": 10,
+      "description": "Aire acondicionado con alta capacidad de enfriamiento.",
+      "image": "../assets/midea.jpg",
+      "category": "Air Conditioning",
+      "originalPrice": 420000,
+      "rating": "★★★★☆",
+      "reviews": 20,
+      "quantity": 12
+    },
+    {
+      "name": "Aire Acondicionado Phillips",
+      "price": 390000,
+      "discount": 10,
+      "description": "Aire acondicionado con tecnología de última generación.",
+      "image": "../assets/phillips.jpg",
+      "category": "Air Conditioning",
+      "originalPrice": 430000,
+      "rating": "★★★★★",
+      "reviews": 22,
+      "quantity": 10
+    },
+    {
+      "name": "Aire Acondicionado Soler",
+      "price": 380000,
+      "discount": 10,
+      "description": "Aire acondicionado eficiente con múltiples modos de operación.",
+      "image": "../assets/soler.jpg",
+      "category": "Air Conditioning",
+      "originalPrice": 420000,
+      "rating": "★★★★☆",
+      "reviews": 30,
+      "quantity": 10
+    },
+    {
+      "name": "Aire Acondicionado Thorben",
+      "price": 400000,
+      "discount": 10,
+      "description": "Aire acondicionado potente y silencioso.",
+      "image": "../assets/thorben.jpg",
+      "category": "Air Conditioning",
+      "originalPrice": 450000,
+      "rating": "★★★★★",
+      "reviews": 25,
+      "quantity": 7
+    },
+    {
+      "name": "Aire Acondicionado Wurden",
+      "price": 390000,
+      "discount": 10,
+      "description": "Aire acondicionado con alta eficiencia energética.",
+      "image": "../assets/wurden.jpg",
+      "category": "Air Conditioning",
+      "originalPrice": 430000,
+      "rating": "★★★★☆",
+      "reviews": 20,
+      "quantity": 8
+    }
+  ],
+  "outstanding": [
+    {
+      "name": "Teléfono Huawei",
+      "price": 150000,
+      "discount": 10,
+      "description": "Teléfono inteligente de alta calidad con funciones avanzadas.",
+      "image": "../assets/images/huawei.jpg",
+      "category": "Cell Phones",
+      "originalPrice": 170000,
+      "rating": "★★★★☆",
+      "reviews": 40,
+      "quantity": 25
+    },
+    {
+      "name": "MacBook Pro",
+      "price": 1200000,
+      "discount": 5,
+      "description": "Laptop potente para profesionales.",
+      "image": "../assets/images/mac.jpg",
+      "category": "Notebooks",
+      "originalPrice": 1260000,
+      "rating": "★★★★★",
+      "reviews": 30,
+      "quantity": 8
+    },
+    {
+      "name": "Samsung TV",
+      "price": 500000,
+      "discount": 20,
+      "description": "Smart TV Ultra HD con visuales impresionantes.",
+      "image": "../assets/images/tv.jpg",
+      "category": "Electronics",
+      "originalPrice": 620000,
+      "rating": "★★★★★",
+      "reviews": 40,
+      "quantity": 12
+    },
+    {
+      "name": "Apple Watch",
+      "price": 200000,
+      "discount": 10,
+      "description": "Smartwatch avanzado con múltiples funciones de salud.",
+      "image": "../assets/images/watch.jpg",
+      "category": "Electronics",
+      "originalPrice": 220000,
+      "rating": "★★★★★",
+      "reviews": 25,
+      "quantity": 20
+    }
+  ]
+}

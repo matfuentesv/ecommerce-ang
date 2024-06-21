@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AirConditioningPortableComponent } from './air-conditioning-portable.component';
+import { AirConditioningComponent } from './air-conditioning.component';
 
 describe('AirConditioningPortableComponent', () => {
-  let component: AirConditioningPortableComponent;
-  let fixture: ComponentFixture<AirConditioningPortableComponent>;
+  let component: AirConditioningComponent;
+  let fixture: ComponentFixture<AirConditioningComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AirConditioningPortableComponent]
+      imports: [AirConditioningComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(AirConditioningPortableComponent);
+
+    fixture = TestBed.createComponent(AirConditioningComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

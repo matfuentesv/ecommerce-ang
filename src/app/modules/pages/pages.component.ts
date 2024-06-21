@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {FooterComponent} from "../../shared/components/footer/footer.component";
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-pages',
@@ -8,7 +9,8 @@ import {FooterComponent} from "../../shared/components/footer/footer.component";
   imports: [
     RouterOutlet,
     FooterComponent,
-    RouterLink
+    RouterLink,
+    NgOptimizedImage
   ],
   templateUrl: './pages.component.html',
   styleUrl: './pages.component.css'
