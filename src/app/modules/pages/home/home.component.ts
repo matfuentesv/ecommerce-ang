@@ -29,9 +29,6 @@ export class HomeComponent implements OnInit {
       this.products = x.outstanding;
       this.chunkedProducts = this.chunk(this.products, 3);
     });
-
-    // Línea de prueba para verificar que jQuery está cargado
-    console.log('jQuery version:', $.fn.jquery);
   }
 
   chunk(arr: any[], chunkSize: number): any[] {
@@ -46,10 +43,20 @@ export class HomeComponent implements OnInit {
   }
 
   prevSlide(): void {
-    $('#featuredProductsCarousel').carousel('prev');
+    const carousel = document.getElementById('featuredProductsCarousel');
+    if (carousel) {
+      // @ts-ignore
+      const bsCarousel = bootstrap.Carousel.getInstance(carousel) || new bootstrap.Carousel(carousel);
+      bsCarousel.prev();
+    }
   }
 
   nextSlide(): void {
-    $('#featuredProductsCarousel').carousel('next');
+    const carousel = document.getElementById('featuredProductsCarousel');
+    if (carousel) {
+      // @ts-ignore
+      const bsCarousel = bootstrap.Carousel.getInstance(carousel) || new bootstrap.Carousel(carousel);
+      bsCarousel.next();
+    }
   }
 }

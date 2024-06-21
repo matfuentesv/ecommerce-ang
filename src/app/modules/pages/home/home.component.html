@@ -7,7 +7,7 @@
 
 <div class="container mt-5">
   <h2 class="text-center">Productos Destacados</h2>
-  <div id="featuredProductsCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
+  <div id="featuredProductsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
     <div class="carousel-inner">
       <div class="carousel-item" *ngFor="let group of chunkedProducts; let i = index" [class.active]="i === 0">
         <div class="row">
@@ -33,13 +33,13 @@
         </div>
       </div>
     </div>
-    <a class="carousel-control-prev" href="javascript:void(0);" role="button" (click)="prevSlide()">
+    <button class="carousel-control-prev" type="button" data-bs-target="#featuredProductsCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Anterior</span>
-    </a>
-    <a class="carousel-control-next" href="javascript:void(0);" role="button" (click)="nextSlide()">
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#featuredProductsCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Siguiente</span>
-    </a>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
   </div>
 </div>
