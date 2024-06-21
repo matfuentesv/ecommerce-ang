@@ -42,21 +42,5 @@ export class HomeComponent implements OnInit {
     return Array.from({ length: 5 }, (_, i) => i < rating ? 'fas fa-star text-warning' : 'far fa-star text-warning');
   }
 
-  prevSlide(): void {
-    const carousel = document.getElementById('featuredProductsCarousel');
-    if (carousel) {
-      // @ts-ignore
-      const bsCarousel = bootstrap.Carousel.getInstance(carousel) || new bootstrap.Carousel(carousel);
-      bsCarousel.prev();
-    }
-  }
 
-  nextSlide(): void {
-    const carousel = document.getElementById('featuredProductsCarousel');
-    if (carousel) {
-      // @ts-ignore
-      const bsCarousel = bootstrap.Carousel.getInstance(carousel) || new bootstrap.Carousel(carousel);
-      bsCarousel.next();
-    }
-  }
 }

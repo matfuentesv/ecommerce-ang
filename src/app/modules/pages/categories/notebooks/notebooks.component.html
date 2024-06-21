@@ -1,1 +1,26 @@
-<p>notebooks works!</p>
+<main class="content">
+  <div class="container">
+    <h2 class="title text-center pt-1">Notebooks</h2>
+    <div class="row game-list" *ngFor="let group of chunkedProducts">
+      <div class="col-md-4" *ngFor="let product of group">
+        <div class="card mb-4 product-card">
+          <img [src]="product.image" class="card-img-top" [alt]="product.name">
+          <div class="card-body">
+            <span class="badge badge-success">Llega hoy</span>
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p class="card-price">{{ product.price | currency }} <span class="badge bg-danger">{{ product.discount }}%</span></p>
+            <p class="card-text"><del>{{ product.originalPrice | currency }}</del></p>
+            <div class="rating">
+              <ng-container *ngFor="let star of getStars(product.rating)">
+                <i [ngClass]="star"></i>
+              </ng-container>
+              ({{ product.reviews }})
+            </div>
+            <button class="btn btn-primary btn-block">Agregar al Carrito</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
