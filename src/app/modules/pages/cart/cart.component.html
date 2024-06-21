@@ -1,1 +1,46 @@
-<p>cart works!</p>
+<div class="container mt-5">
+  <h2 class="text-center">Carrito de Compras</h2>
+  <div class="row">
+    <div class="col-md-8 cart-items-container">
+      <div id="cart-items">
+        <div class="row" *ngFor="let product of products; let index = index">
+          <div class="col-md-3">
+            <img [src]="product.img" class="img-fluid" [alt]="product.title">
+          </div>
+          <div class="col-md-3">
+            <h5>{{ product.title }}</h5>
+            <p>{{ product.description }}</p>
+          </div>
+          <div class="col-md-2">
+            <input type="number" class="form-control" value="1" min="1">
+          </div>
+          <div class="col-md-2">
+            <p>{{ product.price }}</p>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-danger btn-sm" (click)="removeFromCart(index)">Eliminar</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="summary">
+        <h4>Resumen de la compra</h4>
+        <div class="summary-item">
+          <span>Productos</span>
+          <span id="summary-products">$0</span>
+        </div>
+        <div class="summary-item">
+          <span>Descuentos</span>
+          <span id="summary-discounts">-$0</span>
+        </div>
+        <div class="summary-item summary-total">
+          <span>Total</span>
+          <span id="summary-total">$0</span>
+        </div>
+        <button class="btn btn-primary btn-block mt-3" id="checkout-button">Pagar</button>
+      </div>
+    </div>
+  </div>
+</div>
