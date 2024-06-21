@@ -1,20 +1,23 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DataService } from "../../../core/services/data/data.service";
+import { Products } from "../../../shared/models/products";
 import {CurrencyPipe, NgClass, NgForOf} from "@angular/common";
-import {Products} from "../../../shared/models/products";
-import {DataService} from "../../../core/services/data/data.service";
+
+// Declarar jQuery como una variable global
+declare var $: any;
 
 @Component({
   selector: 'app-home',
+  templateUrl: './home.component.html',
   standalone: true,
   imports: [
-    NgForOf,
+    NgClass,
     CurrencyPipe,
-    NgClass
+    NgForOf
   ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
 
   products: Products[] = [];
   chunkedProducts: Products[][] = [];
@@ -26,6 +29,9 @@ export class HomeComponent implements OnInit{
       this.products = x.outstanding;
       this.chunkedProducts = this.chunk(this.products, 3);
     });
+
+    // Línea de prueba para verificar que jQuery está cargado
+    console.log('jQuery version:', $.fn.jquery);
   }
 
   chunk(arr: any[], chunkSize: number): any[] {
@@ -39,6 +45,11 @@ export class HomeComponent implements OnInit{
     return Array.from({ length: 5 }, (_, i) => i < rating ? 'fas fa-star text-warning' : 'far fa-star text-warning');
   }
 
+  prevSlide(): void {
+    $('#featuredProductsCarousel').carousel('prev');
+  }
 
-
+  nextSlide(): void {
+    $('#featuredProductsCarousel').carousel('next');
+  }
 }
