@@ -13,16 +13,16 @@
       "quantity": 10
     },
     {
-      "name": "Apple MacBook Pro",
-      "price": 1199990,
-      "discount": 5,
-      "description": "Por Apple",
-      "image": "../assets/images/mac.jpg",
+      "name": "Dell Inspiron 15",
+      "price": 549990,
+      "discount": 10,
+      "description": "Por Dell",
+      "image": "../assets/images/dell.jpg",
       "category": "Notebooks",
-      "originalPrice": 1259990,
-      "rating": 4.8,
-      "reviews": 200,
-      "quantity": 8
+      "originalPrice": 610000,
+      "rating": 4.2,
+      "reviews": 80,
+      "quantity": 15
     },
     {
       "name": "Lenovo IdeaPad 3",
@@ -75,18 +75,6 @@
   ],
   "cellPhones": [
     {
-      "name": "Bmobile Phone",
-      "price": 50000,
-      "discount": 15,
-      "description": "Teléfono inteligente asequible con características esenciales.",
-      "image": "../assets/images/bmobile.jpg",
-      "category": "Cell Phones",
-      "originalPrice": 59000,
-      "rating": "★★★☆☆",
-      "reviews": 30,
-      "quantity": 50
-    },
-    {
       "name": "Huawei Phone",
       "price": 150000,
       "discount": 10,
@@ -133,20 +121,44 @@
       "rating": "★★★★☆",
       "reviews": 30,
       "quantity": 25
+    },
+    {
+      "name": "Bmobile Phone",
+      "price": 50000,
+      "discount": 15,
+      "description": "Teléfono inteligente asequible con características esenciales.",
+      "image": "../assets/images/bmobile.jpg",
+      "category": "Cell Phones",
+      "originalPrice": 59000,
+      "rating": "★★★☆☆",
+      "reviews": 30,
+      "quantity": 50
+    },
+    {
+      "name": "Asus ROG Phone 8 Pro AI2401 5G 512GB 16GB - Negro",
+      "price": 1411990,
+      "discount": 12,
+      "description": "By Asus",
+      "image": "../assets/images/asus.jpg",
+      "category": "Cell Phones",
+      "originalPrice": 2000000,
+      "rating": 4.3,
+      "reviews": 35,
+      "quantity": 50
     }
   ],
   "coffeeMakers": [
     {
-      "name": "Nescafé Coffee Maker",
-      "price": 109990,
-      "discount": 20,
-      "description": "By Nescafé",
-      "image": "../assets/images/nescafe.jpg",
+      "name": "DeLonghi Coffee Maker",
+      "price": 129990,
+      "discount": 15,
+      "description": "By DeLonghi",
+      "image": "../assets/images/delonghi.jpg",
       "category": "Coffee Makers",
-      "originalPrice": 137990,
-      "rating": 4.3,
-      "reviews": 70,
-      "quantity": 15
+      "originalPrice": 152990,
+      "rating": 4.5,
+      "reviews": 80,
+      "quantity": 10
     },
     {
       "name": "Krups Coffee Maker",
@@ -161,6 +173,18 @@
       "quantity": 10
     },
     {
+      "name": "Nescafé Coffee Maker",
+      "price": 109990,
+      "discount": 20,
+      "description": "By Nescafé",
+      "image": "../assets/images/nescafe.jpg",
+      "category": "Coffee Makers",
+      "originalPrice": 137990,
+      "rating": 4.3,
+      "reviews": 70,
+      "quantity": 15
+    },
+    {
       "name": "Oster Coffee Maker",
       "price": 99.990,
       "discount": 12,
@@ -173,126 +197,103 @@
       "quantity": 18
     },
     {
-      "name": "DeLonghi Coffee Maker",
-      "price": 129990,
+      "name": "Phillips Coffee Maker",
+      "price": 139990,
       "discount": 15,
-      "description": "By DeLonghi",
-      "image": "../assets/images/delonghi.jpg",
+      "description": "By Phillips",
+      "image": "../assets/images/phillips.jpg",
       "category": "Coffee Makers",
-      "originalPrice": 152990,
-      "rating": 4.5,
-      "reviews": 80,
-      "quantity": 10
+      "originalPrice": 164990,
+      "rating": 4.2,
+      "reviews": 85,
+      "quantity": 18
+    },
+    {
+      "name": "Wurden Coffee Maker",
+      "price": 119990,
+      "discount": 10,
+      "description": "By Wurden",
+      "image": "../assets/images/wurden.jpg",
+      "category": "Coffee Makers",
+      "originalPrice": 133990,
+      "rating": 4.4,
+      "reviews": 75,
+      "quantity": 18
     }
+
   ],
   "airConditioning": [
     {
-      "name": "Aire Acondicionado Aus",
-      "price": 350000,
+      "name": "Clark Portable Air Conditioner",
+      "price": 299990,
       "discount": 15,
-      "description": "Aire acondicionado eficiente en energía para enfriar tu hogar.",
-      "image": "../assets/images/aus.jpg",
-      "category": "Air Conditioning",
-      "originalPrice": 410000,
-      "rating": "★★★★☆",
-      "reviews": 30,
-      "quantity": 5
-    },
-    {
-      "name": "Aire Acondicionado Clark",
-      "price": 380000,
-      "discount": 10,
-      "description": "Aire acondicionado potente con control remoto.",
+      "description": "By Clark",
       "image": "../assets/images/clark.jpg",
       "category": "Air Conditioning",
-      "originalPrice": 420000,
-      "rating": "★★★★★",
-      "reviews": 35,
-      "quantity": 8
-    },
-    {
-      "name": "Aire Acondicionado Gree",
-      "price": 350000,
-      "discount": 15,
-      "description": "Aire acondicionado eficiente en energía para enfriar tu hogar.",
-      "image": "../assets/images/gree.jpg",
-      "category": "Air Conditioning",
-      "originalPrice": 410000,
-      "rating": "★★★★☆",
-      "reviews": 30,
+      "originalPrice": 349.990,
+      "rating": 4.2,
+      "reviews": 80,
       "quantity": 5
     },
     {
-      "name": "Aire Acondicionado Kendal",
-      "price": 380000,
+      "name": "Gree Portable Air Conditioner",
+      "price": 319990,
       "discount": 10,
-      "description": "Aire acondicionado potente con control remoto.",
-      "image": "../assets/images/kendal.jpg",
+      "description": "By Gree",
+      "image": "../assets/images/gree.jpg",
       "category": "Air Conditioning",
-      "originalPrice": 420000,
-      "rating": "★★★★★",
-      "reviews": 35,
+      "originalPrice": 355990,
+      "rating": 4.5,
+      "reviews": 90,
       "quantity": 8
     },
     {
-      "name": "Aire Acondicionado Midea",
-      "price": 370000,
-      "discount": 10,
-      "description": "Aire acondicionado con alta capacidad de enfriamiento.",
+      "name": "Kendal Portable Air Conditioner",
+      "price": 289990,
+      "discount": 20,
+      "description": "Kendal Portable Air Conditioner",
+      "image": "../assets/images/kendal.jpg",
+      "category": "Air Conditioning",
+      "originalPrice": 369990,
+      "rating": 4.3,
+      "reviews": 70,
+      "quantity": 5
+    },
+    {
+      "name": "Midea Portable Air Conditioner",
+      "price": 339990,
+      "discount": 12,
+      "description": "By Midea",
       "image": "../assets/images/midea.jpg",
       "category": "Air Conditioning",
-      "originalPrice": 420000,
-      "rating": "★★★★☆",
-      "reviews": 20,
+      "originalPrice": 385990,
+      "rating": 4.7,
+      "reviews": 100,
+      "quantity": 8
+    },
+    {
+      "name": "Soler & Palau Portable Air Conditioner",
+      "price": 299990,
+      "discount": 15,
+      "description": "Soler & Palau Portable Air Conditioner",
+      "image": "../assets/images/soler.jpg",
+      "category": "Air Conditioning",
+      "originalPrice": 349.990,
+      "rating": 4.1,
+      "reviews": 65,
       "quantity": 12
     },
     {
-      "name": "Aire Acondicionado Phillips",
-      "price": 390000,
+      "name": "Thorben Portable Air Conditioner",
+      "price": 349990,
       "discount": 10,
-      "description": "Aire acondicionado con tecnología de última generación.",
-      "image": "../assets/images/phillips.jpg",
-      "category": "Air Conditioning",
-      "originalPrice": 430000,
-      "rating": "★★★★★",
-      "reviews": 22,
-      "quantity": 10
-    },
-    {
-      "name": "Aire Acondicionado Soler",
-      "price": 380000,
-      "discount": 10,
-      "description": "Aire acondicionado eficiente con múltiples modos de operación.",
-      "image": "../assets/images/soler.jpg",
-      "category": "Air Conditioning",
-      "originalPrice": 420000,
-      "rating": "★★★★☆",
-      "reviews": 30,
-      "quantity": 10
-    },
-    {
-      "name": "Aire Acondicionado Thorben",
-      "price": 400000,
-      "discount": 10,
-      "description": "Aire acondicionado potente y silencioso.",
+      "description": "By Thorben",
       "image": "../assets/images/thorben.jpg",
       "category": "Air Conditioning",
-      "originalPrice": 450000,
-      "rating": "★★★★★",
-      "reviews": 25,
-      "quantity": 7
-    },
-    {
-      "name": "Aire Acondicionado Wurden",
-      "price": 390000,
-      "discount": 10,
-      "description": "Aire acondicionado con alta eficiencia energética.",
-      "image": "../assets/images/wurden.jpg",
-      "category": "Air Conditioning",
-      "originalPrice": 430000,
-      "rating": "★★★★☆",
-      "reviews": 20,
-      "quantity": 8
+      "originalPrice": 389990,
+      "rating": 4.6,
+      "reviews": 85,
+      "quantity": 10
     }
   ],
   "outstanding": [
