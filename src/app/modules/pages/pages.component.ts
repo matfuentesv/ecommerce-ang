@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router, RouterLink, RouterOutlet} from "@angular/router";
 import {FooterComponent} from "../../shared/components/footer/footer.component";
-import {NgOptimizedImage} from "@angular/common";
+import {NgIf, NgOptimizedImage} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
 import {DataService} from "../../core/services/data/data.service";
 import {LoginModalComponent} from "../../shared/components/login-modal/login-modal.component";
@@ -16,7 +16,8 @@ import {filter} from "rxjs";
     RouterOutlet,
     FooterComponent,
     RouterLink,
-    NgOptimizedImage
+    NgOptimizedImage,
+    NgIf
   ],
   templateUrl: './pages.component.html',
   styleUrl: './pages.component.css'
