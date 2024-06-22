@@ -3,6 +3,7 @@ import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
 import {CartService} from "../../../core/services/cart/cart.service";
 import {Products} from "../../../shared/models/products";
 import {FormsModule} from "@angular/forms";
+import {CustomCurrencyPipe} from "../../../shared/pipes/customCurrency";
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +12,8 @@ import {FormsModule} from "@angular/forms";
     NgForOf,
     CurrencyPipe,
     FormsModule,
-    NgIf
+    NgIf,
+    CustomCurrencyPipe
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'

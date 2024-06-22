@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="rut">RUT</label>
+          <label for="rut">Rut</label>
           <input type="text" [ngClass]="{'input-error':validRut}" id="rut" class="form-control" formControlName="rut" required>
           <div *ngIf="registerForm.get('rut')?.invalid && registerForm.get('rut')?.touched">
             <small class="error" *ngIf="registerForm.get('rut')?.errors?.['required']">El rut es obligatorio.</small>
