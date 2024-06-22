@@ -1,82 +1,57 @@
-import { Component } from '@angular/core';
-import {NgForOf} from "@angular/common";
+import {Component, OnInit} from '@angular/core';
+import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
+import {CartService} from "../../../core/services/cart/cart.service";
+import {Products} from "../../../shared/models/products";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-cart',
   standalone: true,
   imports: [
-    NgForOf
+    NgForOf,
+    CurrencyPipe,
+    FormsModule,
+    NgIf
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
-export class CartComponent {
+export class CartComponent implements OnInit{
 
-  products = [
-    {
-      img: 'path/to/image1.jpg',
-      title: 'Producto 1',
-      description: 'Descripción del producto 1',
-      price: 100
-    },
-    {
-      img: 'path/to/image2.jpg',
-      title: 'Producto 2',
-      description: 'Descripción del producto 2',
-      price: 200
-    },
-    {
-      img: 'path/to/image1.jpg',
-      title: 'Producto 1',
-      description: 'Descripción del producto 1',
-      price: 100
-    },
-    {
-      img: 'path/to/image2.jpg',
-      title: 'Producto 2',
-      description: 'Descripción del producto 2',
-      price: 200
-    },
-    {
-      img: 'path/to/image1.jpg',
-      title: 'Producto 1',
-      description: 'Descripción del producto 1',
-      price: 100
-    },
-    {
-      img: 'path/to/image2.jpg',
-      title: 'Producto 2',
-      description: 'Descripción del producto 2',
-      price: 200
-    },
-    {
-      img: 'path/to/image1.jpg',
-      title: 'Producto 1',
-      description: 'Descripción del producto 1',
-      price: 100
-    },
-    {
-      img: 'path/to/image2.jpg',
-      title: 'Producto 2',
-      description: 'Descripción del producto 2',
-      price: 200
-    },
-    {
-      img: 'path/to/image1.jpg',
-      title: 'Producto 1',
-      description: 'Descripción del producto 1',
-      price: 100
-    },
-    {
-      img: 'path/to/image2.jpg',
-      title: 'Producto 2',
-      description: 'Descripción del producto 2',
-      price: 200
+  items: Products[] = [];
+  total: number = 0;
+  discount: number = 0;
+
+  constructor(private cartService: CartService) { }
+
+  ngOnInit(): void {
+    this.items = this.cartService.getItems();
+    console.log('Items en el carrito:', this.items);
+    this.calculateTotal();
+  }
+
+  calculateTotal(): void {
+    this.total = this.items.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
+    this.discount = this.items.reduce((acc, item) => acc + ((item.price * (item.discount / 100)) * (item.quantity || 1)), 0);
+  }
+
+  updateQuantity(productName: string, quantity: number | undefined): void {
+    if (quantity === undefined || quantity < 1) {
+      quantity = 1;
     }
-    // Agrega más productos según sea necesario
-  ];
+    this.cartService.updateQuantity(productName, quantity);
+    this.calculateTotal();
+  }
 
-  removeFromCart(index: number) {
-    this.products.splice(index, 1);
+  removeItem(productName: string): void {
+    this.cartService.removeItem(productName);
+    this.items = this.cartService.getItems();
+    this.calculateTotal();
+  }
+
+  clearCart(): void {
+    this.items = this.cartService.clearCart();
+    this.total = 0;
+    this.discount = 0;
   }
 }

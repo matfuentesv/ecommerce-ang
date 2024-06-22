@@ -3,6 +3,8 @@ import { DataService } from "../../../core/services/data/data.service";
 import { Products } from "../../../shared/models/products";
 import {CurrencyPipe, NgClass, NgForOf} from "@angular/common";
 import {CartService} from "../../../core/services/cart/cart.service";
+import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
+import {MatButton} from "@angular/material/button";
 
 
 
@@ -15,7 +17,8 @@ declare var $: any;
   imports: [
     NgClass,
     CurrencyPipe,
-    NgForOf
+    NgForOf,
+    MatButton
   ],
   styleUrls: ['./home.component.css']
 })
@@ -23,9 +26,12 @@ export class HomeComponent implements OnInit,AfterViewInit  {
 
   products: Products[] = [];
   chunkedProducts: Products[][] = [];
+  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   constructor(private dataService: DataService,
-              private cartService: CartService) { }
+              private cartService: CartService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.dataService.getProducts().subscribe(x => {
@@ -51,8 +57,15 @@ export class HomeComponent implements OnInit,AfterViewInit  {
     });
   }
 
+
   addToCart(product: Products): void {
     this.cartService.addToCart(product);
+    this.snackBar.open('Producto agregado al carrito!', '', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 3000,
+      panelClass: ['custom-snackbar']
+    });
   }
 
 

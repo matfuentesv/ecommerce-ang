@@ -6,6 +6,23 @@
   height: 250px;
 }
 
-.product-card {
-  /* Ajusta los estilos según sea necesario */
+
+
+
+.custom-button {
+  color: #fff;
+  border-color: #ff4081;
+  background-color: #7cda43;
+
+  &:hover {
+    background-color: #303f9f;
+    border-color: #ff4081;
+  }
 }
+
+.custom-snackbar {
+  background-color: #4dff40 !important;
+  color: #fff !important;
+}
+
+

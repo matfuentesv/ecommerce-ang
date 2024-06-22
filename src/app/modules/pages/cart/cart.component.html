@@ -1,46 +1,31 @@
-<div class="container mt-5">
-  <h2 class="text-center">Carrito de Compras</h2>
-  <div class="row">
-    <div class="col-md-8 cart-items-container">
-      <div id="cart-items">
-        <div class="row" *ngFor="let product of products; let index = index">
-          <div class="col-md-3">
-            <img [src]="product.img" class="img-fluid" [alt]="product.title">
-          </div>
-          <div class="col-md-3">
-            <h5>{{ product.title }}</h5>
-            <p>{{ product.description }}</p>
-          </div>
-          <div class="col-md-2">
-            <input type="number" class="form-control" value="1" min="1">
-          </div>
-          <div class="col-md-2">
-            <p>{{ product.price }}</p>
-          </div>
-          <div class="col-md-2">
-            <button class="btn btn-danger btn-sm" (click)="removeFromCart(index)">Eliminar</button>
+<div class="cart-container mt-3">
+  <h2>Carrito de Compras</h2>
+  <div class="cart-content">
+    <div class="cart-items">
+      <div *ngIf="items.length === 0">
+        <p>No hay productos en el carrito.</p>
+      </div>
+      <div *ngIf="items.length > 0" class="cart-items-list">
+        <div *ngFor="let item of items" class="cart-item">
+          <img [src]="item.image" alt="Producto" class="cart-item-image">
+          <div class="cart-item-details">
+            <h5>{{ item.name }}</h5>
+            <p>Por {{ item.category }}</p>
+            <p>{{ item.price | currency }}</p>
+            <div class="cart-item-quantity">
+              <input type="number" [(ngModel)]="item.quantity" (change)="updateQuantity(item.name, item.quantity)" min="1">
+              <button class="btn btn-danger" (click)="removeItem(item.name)">Eliminar</button>
+            </div>
           </div>
         </div>
-
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="summary">
-        <h4>Resumen de la compra</h4>
-        <div class="summary-item">
-          <span>Productos</span>
-          <span id="summary-products">$0</span>
-        </div>
-        <div class="summary-item">
-          <span>Descuentos</span>
-          <span id="summary-discounts">-$0</span>
-        </div>
-        <div class="summary-item summary-total">
-          <span>Total</span>
-          <span id="summary-total">$0</span>
-        </div>
-        <button class="btn btn-primary btn-block mt-3" id="checkout-button">Pagar</button>
-      </div>
+    <div class="cart-summary">
+      <h3>Resumen de la compra</h3>
+      <p>Productos: {{ total | currency }}</p>
+      <p>Descuentos: {{ discount | currency }}</p>
+      <p>Total: {{ (total - discount) | currency }}</p>
+      <button class="btn btn-primary">Pagar</button>
     </div>
   </div>
 </div>
