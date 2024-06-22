@@ -33,6 +33,17 @@
               <small class="error" *ngIf="registerForm.get('phone')?.errors?.['phone']">El celular no es válido.</small>
             </div>
         </div>
+
+
+        <div class="form-group">
+          <label for="phone">Dirección</label>
+          <input type="text" [ngClass]="{'input-error':validAddress}" id="address" class="form-control" formControlName="address" required>
+          <div *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched">
+            <small class="error" *ngIf="registerForm.get('address')?.errors?.['required']">La dirección es obligatorio.</small>
+            <small class="error" *ngIf="registerForm.get('address')?.errors?.['address']">La dirección  no es válido.</small>
+          </div>
+        </div>
+
         <div class="form-group">
           <label >Correo electrónico</label>
           <input type="email" [ngClass]="{'input-error':validEmail}" id="email" class="form-control" formControlName="email" required>

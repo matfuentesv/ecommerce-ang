@@ -13,6 +13,7 @@ import {
 import {AuthService} from "../../../core/services/auth/auth.service";
 import {User} from "../../../shared/models/user";
 import {NgClass, NgIf} from "@angular/common";
+import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-register',
@@ -28,11 +29,13 @@ import {NgClass, NgIf} from "@angular/common";
 export class RegisterComponent implements OnInit {
 
   registerForm!: FormGroup;
-
+  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private router: Router,
-              private dialog:MatDialog) {}
+              private dialog:MatDialog,
+              private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -40,6 +43,7 @@ export class RegisterComponent implements OnInit {
       lastName: ['', Validators.required],
       rut: ['', Validators.required],
       phone: ['', Validators.required],
+      address: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [
         Validators.required,
@@ -72,6 +76,10 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('phone')?.invalid && this.registerForm.get('phone')?.touched;
   }
 
+  get validAddress(){
+    return this.registerForm.get('address')?.invalid && this.registerForm.get('address')?.touched;
+  }
+
 
 
   get validPassword(){
@@ -91,6 +99,12 @@ export class RegisterComponent implements OnInit {
       console.log(user);
       this.authService.setUser(user);
       if (this.authService.login(user.email, user.password)) {
+        this.snackBar.open('Usuario creado con exito!', '', {
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+          duration: 3000,
+          panelClass: ['custom-snackbar']
+        });
         this.router.navigate(['/home']);
       }
     }else {
