@@ -2,12 +2,12 @@
   "notebooks": [
     {
       "name": "Asus",
-      "price": 1411990,
+      "price": 749990,
       "discount": 12,
-      "description": "Asus ROG Phone 8 Pro AI2401 5G 512GB 16GB - Negro",
-      "image": "../assets/images/asus.jpg",
+      "description": "Notebook Gamer TUF Gaming F15",
+      "image": "../assets/images/asus-note.jpg",
       "category": "Notebooks",
-      "originalPrice": 2000000,
+      "originalPrice": 949990,
       "rating": 4.3,
       "reviews": 35,
       "quantity": 10

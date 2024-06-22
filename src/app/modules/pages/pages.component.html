@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
         <li class="nav-item menu-container">
-          <button class="menu-button btn  text-white pt-3">
+          <button class="menu-button btn text-white pt-3">
             <i class="fas fa-bars"></i> Menú
           </button>
           <div class="menu-dropdown">
@@ -33,7 +33,7 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown" *ngIf="!userName">
-          <span (click)="openModal()" class="nav-link text-white me-3" ><i class="fas fa-user"></i> Hola, Inicia sesión</span>
+          <span (click)="openModal()" class="nav-link text-white me-3"><i class="fas fa-user"></i> Hola, Inicia sesión</span>
         </li>
         <li class="nav-item dropdown" *ngIf="userName">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,13 +41,9 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" [routerLink]="['account']">Mi cuenta</a>
-            <a class="dropdown-item" *ngIf="userRole === 'admin'" [routerLink]="['/admin']">Administración</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" (click)="logout()" href="#">Cerrar sesión</a>
           </div>
-        </li>
-        <li class="nav-item" *ngIf="!userName">
-          <a class="nav-link" [routerLink]="['/login']"><i class="fas fa-user"></i> Mi cuenta</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/cart']"><i class="fas fa-shopping-cart"></i> Mi carrito</a>

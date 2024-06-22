@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { DataService } from "../../../core/services/data/data.service";
 import { Products } from "../../../shared/models/products";
 import {CurrencyPipe, NgClass, NgForOf} from "@angular/common";
+import {CartService} from "../../../core/services/cart/cart.service";
 
 
 
@@ -23,7 +24,8 @@ export class HomeComponent implements OnInit,AfterViewInit  {
   products: Products[] = [];
   chunkedProducts: Products[][] = [];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
     this.dataService.getProducts().subscribe(x => {
@@ -47,6 +49,10 @@ export class HomeComponent implements OnInit,AfterViewInit  {
     $('#featuredProductsCarousel').carousel({
       interval: 2000
     });
+  }
+
+  addToCart(product: Products): void {
+    this.cartService.addToCart(product);
   }
 
 

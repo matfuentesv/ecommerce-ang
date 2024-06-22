@@ -1,1 +1,78 @@
-<p>admin works!</p>
+<div class="admin-container">
+  <div class="sidebar">
+    <h2>Panel de Administración</h2>
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="currentSection === 'products'" (click)="showSection($event, 'products')" href="javascript:void(0);">Gestionar Productos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="currentSection === 'users'" (click)="showSection($event, 'users')" href="javascript:void(0);">Gestionar Usuarios</a>
+      </li>
+    </ul>
+  </div>
+  <div class="main-content">
+    <div *ngIf="currentSection === 'products'">
+      <h3>Gestionar Productos</h3>
+      <form [formGroup]="productForm" (ngSubmit)="onSubmitProduct()">
+        <div class="form-group">
+          <label for="productName">Nombre del Producto</label>
+          <input type="text" class="form-control" id="productName" placeholder="Nombre del Producto" formControlName="productName" required>
+        </div>
+        <div class="form-group">
+          <label for="description">Descripción</label>
+          <textarea class="form-control" id="description" rows="3" placeholder="Descripción" formControlName="description" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="price">Precio</label>
+          <input type="number" class="form-control" id="price" placeholder="Precio" formControlName="price" required>
+        </div>
+        <div class="form-group">
+          <label for="category">Categoría</label>
+          <select class="form-control" id="category" formControlName="category" required>
+            <option>Computadoras</option>
+            <option>Celulares</option>
+            <option>Aire acondicionado</option>
+            <option>Cafeteras eléctricas</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="image">Imagen</label>
+          <input type="file" class="form-control-file" id="image" formControlName="image">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Agregar Producto</button>
+      </form>
+    </div>
+
+    <div *ngIf="currentSection === 'users'">
+      <h3>Gestionar Usuarios</h3>
+      <form [formGroup]="userForm" (ngSubmit)="onSubmitUser()">
+        <div class="form-group">
+          <label for="userName">Nombre del Usuario</label>
+          <input type="text" class="form-control" id="userName" placeholder="Nombre del Usuario" formControlName="userName" required>
+        </div>
+        <div class="form-group">
+          <label for="userEmail">Correo Electrónico</label>
+          <input type="email" class="form-control" id="userEmail" placeholder="Correo Electrónico" formControlName="userEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="userRole">Rol</label>
+          <select class="form-control" id="userRole" formControlName="userRole" required>
+            <option>Admin</option>
+            <option>Customer</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Agregar Usuario</button>
+      </form>
+    </div>
+
+    <div *ngIf="currentSection === 'orders'">
+      <h3>Gestionar Pedidos</h3>
+      <p>Sección para gestionar pedidos.</p>
+    </div>
+
+    <div *ngIf="currentSection === 'reports'">
+      <h3>Informes</h3>
+
+    </div>
+  </div>
+</div>
