@@ -11,8 +11,8 @@
                 <span class="badge badge-success">Llega hoy</span>
                 <h5 class="card-title">{{product.name}}</h5>
                 <p class="card-text">{{product.description}}</p>
-                <p class="card-price">{{product.price | currency}} <span class="badge bg-danger">{{product.discount}}%</span></p>
-                <p class="card-text"><del>{{product.originalPrice | currency}}</del></p>
+                <p class="card-price">{{product.price | customCurrency}} <span class="badge bg-danger">{{product.discount}}%</span></p>
+                <p class="card-text"><del>{{product.originalPrice | customCurrency}}</del></p>
                 <div class="rating">
                   <ng-container *ngFor="let star of getStars(product.rating)">
                     <i [ngClass]="star"></i>

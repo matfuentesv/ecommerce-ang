@@ -5,6 +5,7 @@ import {CurrencyPipe, NgClass, NgForOf} from "@angular/common";
 import {CartService} from "../../../core/services/cart/cart.service";
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
 import {MatButton} from "@angular/material/button";
+import {CustomCurrencyPipe} from "../../../shared/pipes/customCurrency";
 
 
 
@@ -18,7 +19,8 @@ declare var $: any;
     NgClass,
     CurrencyPipe,
     NgForOf,
-    MatButton
+    MatButton,
+    CustomCurrencyPipe
   ],
   styleUrls: ['./home.component.css']
 })

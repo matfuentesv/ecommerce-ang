@@ -3,6 +3,7 @@ import {CurrencyPipe, NgClass, NgForOf} from "@angular/common";
 import {Products} from "../../models/products";
 import {CartService} from "../../../core/services/cart/cart.service";
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
+import {CustomCurrencyPipe} from "../../pipes/customCurrency";
 
 @Component({
   selector: 'app-grid',
@@ -10,7 +11,8 @@ import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition}
   imports: [
     CurrencyPipe,
     NgForOf,
-    NgClass
+    NgClass,
+    CustomCurrencyPipe
   ],
   templateUrl: './grid.component.html',
   styleUrl: './grid.component.css'
