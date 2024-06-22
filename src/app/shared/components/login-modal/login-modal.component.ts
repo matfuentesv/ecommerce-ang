@@ -29,8 +29,8 @@ export class LoginModalComponent {
               private authService: AuthService) {
 
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      email: ['jane.smith@example.com', [Validators.required, Validators.email]],
+      password: ['password456', Validators.required]
     });
   }
 
@@ -44,6 +44,7 @@ export class LoginModalComponent {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       if (this.authService.login(email, password)) {
+        this.dialog.closeAll();
         this.router.navigate(['/home']);
       } else {
         this.isValidUser = false;
