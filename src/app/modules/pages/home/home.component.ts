@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { DataService } from "../../../core/services/data/data.service";
 import { Products } from "../../../shared/models/products";
 import {CurrencyPipe, NgClass, NgForOf} from "@angular/common";
 
-// Declarar jQuery como una variable global
+
+
 declare var $: any;
 
 @Component({
@@ -17,7 +18,7 @@ declare var $: any;
   ],
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit,AfterViewInit  {
 
   products: Products[] = [];
   chunkedProducts: Products[][] = [];
@@ -40,6 +41,12 @@ export class HomeComponent implements OnInit {
 
   getStars(rating: number): string[] {
     return Array.from({ length: 5 }, (_, i) => i < rating ? 'fas fa-star text-warning' : 'far fa-star text-warning');
+  }
+
+  ngAfterViewInit(): void {
+    $('#featuredProductsCarousel').carousel({
+      interval: 2000
+    });
   }
 
 
