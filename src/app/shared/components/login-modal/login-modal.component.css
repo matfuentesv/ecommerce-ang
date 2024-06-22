@@ -9,3 +9,41 @@
 .modal-footer {
   border-top: none;
 }
+
+#loginModal .modal-content {
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#loginModal .modal-header {
+  border-bottom: none;
+}
+
+#loginModal .modal-body {
+  padding: 2rem;
+}
+
+#loginModal .btn-close {
+  padding: 0.5rem 1rem;
+}
+
+#loginModal .form-control {
+  border-radius: 0;
+}
+
+#loginModal .btn-primary {
+  border-radius: 0;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+#loginModal .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
