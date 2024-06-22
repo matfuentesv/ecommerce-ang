@@ -1,0 +1,45 @@
+.navbar-custom {
+  background-color: #28a745; /* O el color que prefieras */
+}
+
+.navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #d4d4d4;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.badge {
+  position: relative;
+  top: -10px;
+  right: 10px;
+  font-size: 0.8rem;
+}
+
+.menu-container .menu-dropdown {
+  display: none;
+  position: absolute;
+  background-color: #28a745;
+  z-index: 1000;
+}
+
+.menu-container:hover .menu-dropdown {
+  display: block;
+}
+
+.menu-dropdown .dropdown-item {
+  color: white;
+}
+
+.menu-dropdown .dropdown-item:hover {
+  background-color: #218838;
+}
+
+.submenu {
+  padding-left: 20px;
+}
