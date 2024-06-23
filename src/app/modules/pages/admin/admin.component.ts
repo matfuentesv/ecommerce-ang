@@ -16,6 +16,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatSort} from "@angular/material/sort";
 import {catchError, map, merge, of, startWith, switchMap} from "rxjs";
 import {MatSpinner} from "@angular/material/progress-spinner";
+import {MatDialog} from "@angular/material/dialog";
+import {UserModalComponent} from "../../../shared/components/user-modal/user-modal.component";
 
 @Component({
   selector: 'app-admin',
@@ -49,9 +51,13 @@ export class AdminComponent implements OnInit, AfterViewInit,AfterViewChecked  {
   dataSource = new MatTableDataSource<User>();
   resultsLength = 0;
   isLoadingResults = true;
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  constructor(private fb: FormBuilder, private userService: DataService, private cdr: ChangeDetectorRef, private ngZone: NgZone) {
+
+  constructor(private fb: FormBuilder,
+              private userService: DataService,
+              private cdr: ChangeDetectorRef,
+              private ngZone: NgZone,
+              private dialog: MatDialog) {
     this.productForm = this.fb.group({
       productName: ['', Validators.required],
       description: ['', Validators.required],
@@ -115,7 +121,7 @@ export class AdminComponent implements OnInit, AfterViewInit,AfterViewChecked  {
           .subscribe(data => {
             this.ngZone.run(() => {
               this.dataSource.data = data;
-              this.cdr.detectChanges(); // Ensure change detection after data fetch
+              this.cdr.detectChanges();
             });
           });
       });
@@ -152,6 +158,9 @@ export class AdminComponent implements OnInit, AfterViewInit,AfterViewChecked  {
     }
   }
 
+  openModal(){
+    this.dialog.open(UserModalComponent);
+  }
 
 }
 

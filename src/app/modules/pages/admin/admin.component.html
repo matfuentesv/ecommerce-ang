@@ -44,6 +44,9 @@
     </div>
     <div *ngIf="currentSection === 'users'">
       <h3>Gestionar Usuarios</h3>
+      <div class="right-align-button">
+        <button type="button" (click)="openModal()" class="btn btn-primary">Agregar</button>
+      </div>
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="firstName">
           <th mat-header-cell *matHeaderCellDef> Nombre </th>
