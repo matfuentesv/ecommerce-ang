@@ -1,10 +1,22 @@
-import {Component, Input} from '@angular/core';
-import {CurrencyPipe, NgClass, NgForOf} from "@angular/common";
-import {Products} from "../../models/products";
-import {CartService} from "../../../core/services/cart/cart.service";
-import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
-import {CustomCurrencyPipe} from "../../pipes/customCurrency";
+import { Component, Input } from '@angular/core';
+import { CurrencyPipe, NgClass, NgForOf } from "@angular/common";
+import { Products } from "../../models/products";
+import { CartService } from "../../../core/services/cart/cart.service";
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
+import { CustomCurrencyPipe } from "../../pipes/customCurrency";
 
+/**
+ * @description
+ * Este componente se encarga de mostrar una cuadrícula de productos.
+ * Cada producto puede ser agregado al carrito de compras.
+ *
+ * @usageNotes
+ * Este componente debe ser utilizado para mostrar listas de productos divididas en secciones.
+ *
+ *
+ * @example
+ * <app-grid [chunkedProducts]="products" title="Productos destacados"></app-grid>
+ */
 @Component({
   selector: 'app-grid',
   standalone: true,
@@ -19,23 +31,46 @@ import {CustomCurrencyPipe} from "../../pipes/customCurrency";
 })
 export class GridComponent {
 
+  /**
+   * Posición horizontal de la notificación.
+   */
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+
+  /**
+   * Posición vertical de la notificación.
+   */
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   constructor(private cartService: CartService,
               private snackBar: MatSnackBar) {}
 
+  /**
+   * Productos divididos en secciones para mostrar en la cuadrícula.
+   */
   @Input()
   chunkedProducts: Products[][] = [];
 
+  /**
+   * Título de la cuadrícula.
+   */
   @Input()
   title: string = '';
 
+  /**
+   * Devuelve una lista de clases CSS para las estrellas de calificación.
+   *
+   * @param rating La calificación del producto.
+   * @returns Una lista de clases CSS.
+   */
   getStars(rating: number): string[] {
-    return Array.from({length: 5}, (_, i) => i < rating ? 'fas fa-star text-warning' : 'far fa-star text-warning');
+    return Array.from({ length: 5 }, (_, i) => i < rating ? 'fas fa-star text-warning' : 'far fa-star text-warning');
   }
 
-
+  /**
+   * Agrega un producto al carrito de compras y muestra una notificación.
+   *
+   * @param product El producto a agregar al carrito.
+   */
   addToCart(product: Products): void {
     this.cartService.addToCart(product);
     this.snackBar.open('Producto agregado al carrito!', '', {

@@ -1,0 +1,1168 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ecommerce-ang documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">ecommerce-ang documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  HomeComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/pages/home/home.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Este componente maneja la visualización de los productos destacados en la página de inicio y permite a los usuarios agregar productos al carrito.</p>
+<p>Este componente debe ser utilizado en la página de inicio para mostrar una lista de productos destacados. Requiere la biblioteca jQuery para manejar el carrusel de productos destacados.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;app-home&gt;&lt;/app-home&gt;</code></pre></div>
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>AfterViewInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-home</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgClass</code>
+                            <code>CurrencyPipe</code>
+                            <code>NgForOf</code>
+                            <code>MatButton</code>
+                            <code>CustomCurrencyPipe</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./home.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./home.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#chunkedProducts" >chunkedProducts</a>
+                            </li>
+                            <li>
+                                <a href="#horizontalPosition" >horizontalPosition</a>
+                            </li>
+                            <li>
+                                <a href="#products" >products</a>
+                            </li>
+                            <li>
+                                <a href="#verticalPosition" >verticalPosition</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addToCart" >addToCart</a>
+                            </li>
+                            <li>
+                                <a href="#chunk" >chunk</a>
+                            </li>
+                            <li>
+                                <a href="#getStars" >getStars</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(dataService: <a href="../injectables/DataService.html" target="_self">DataService</a>, cartService: <a href="../injectables/CartService.html" target="_self">CartService</a>, snackBar: MatSnackBar)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/modules/pages/home/home.component.ts:55</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor del componente HomeComponent.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>dataService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DataService.html" target="_self" >DataService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Servicio para obtener los datos de los productos.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>cartService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CartService.html" target="_self" >CartService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Servicio para manejar el carrito de compras.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>MatSnackBar para mostrar mensajes.</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addToCart"></a>
+                    <span class="name">
+                        <span ><b>addToCart</b></span>
+                        <a href="#addToCart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addToCart(product: <a href="../interfaces/Products.html" target="_self">Products</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/modules/pages/home/home.component.ts:116</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Agrega un producto al carrito y muestra un mensaje de confirmación.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>product</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Products.html" target="_self" >Products</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Producto a agregar al carrito.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chunk"></a>
+                    <span class="name">
+                        <span ><b>chunk</b></span>
+                        <a href="#chunk"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>chunk(arr: any[], chunkSize: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="85"
+                                    class="link-to-prism">src/app/modules/pages/home/home.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Divide una lista de elementos en chunks de un tamaño específico.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>arr</td>
+                                            <td>
+                                                        <code>any[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Lista de elementos a dividir.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>chunkSize</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Tamaño de cada chunk.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>any[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Lista de chunks.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getStars"></a>
+                    <span class="name">
+                        <span ><b>getStars</b></span>
+                        <a href="#getStars"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getStars(rating: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="98"
+                                    class="link-to-prism">src/app/modules/pages/home/home.component.ts:98</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Genera una lista de clases de estrellas para mostrar la calificación de un producto.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>rating</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Calificación del producto.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Lista de clases de estrellas.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/modules/pages/home/home.component.ts:105</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Inicializa el carrusel de productos destacados utilizando jQuery.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/app/modules/pages/home/home.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Inicializa el componente y carga los productos destacados.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chunkedProducts"></a>
+                    <span class="name">
+                        <span ><b>chunkedProducts</b></span>
+                        <a href="#chunkedProducts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Products.html" target="_self" >Products[][]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/modules/pages/home/home.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lista de productos dividida en chunks para mostrar en el carrusel.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="horizontalPosition"></a>
+                    <span class="name">
+                        <span ><b>horizontalPosition</b></span>
+                        <a href="#horizontalPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatSnackBarHorizontalPosition</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;start&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/modules/pages/home/home.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Posición horizontal del snack bar.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="products"></a>
+                    <span class="name">
+                        <span ><b>products</b></span>
+                        <a href="#products"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Products.html" target="_self" >Products[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/modules/pages/home/home.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lista de productos destacados.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="verticalPosition"></a>
+                    <span class="name">
+                        <span ><b>verticalPosition</b></span>
+                        <a href="#verticalPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatSnackBarVerticalPosition</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;bottom&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/modules/pages/home/home.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Posición vertical del snack bar.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {AfterViewInit, Component, OnInit} from &#x27;@angular/core&#x27;;
+import { DataService } from &quot;../../../core/services/data/data.service&quot;;
+import { Products } from &quot;../../../shared/models/products&quot;;
+import {CurrencyPipe, NgClass, NgForOf} from &quot;@angular/common&quot;;
+import {CartService} from &quot;../../../core/services/cart/cart.service&quot;;
+import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from &quot;@angular/material/snack-bar&quot;;
+import {MatButton} from &quot;@angular/material/button&quot;;
+import {CustomCurrencyPipe} from &quot;../../../shared/pipes/customCurrency&quot;;
+
+declare var $: any;
+
+/**
+ * @description
+ * Este componente maneja la visualización de los productos destacados en la página de inicio y permite a los usuarios agregar productos al carrito.
+ *
+ * @usageNotes
+ * Este componente debe ser utilizado en la página de inicio para mostrar una lista de productos destacados. Requiere la biblioteca jQuery para manejar el carrusel de productos destacados.
+ *
+ * @example
+ * &lt;app-home&gt;&lt;/app-home&gt;
+ */
+@Component({
+  selector: &#x27;app-home&#x27;,
+  templateUrl: &#x27;./home.component.html&#x27;,
+  standalone: true,
+  imports: [
+    NgClass,
+    CurrencyPipe,
+    NgForOf,
+    MatButton,
+    CustomCurrencyPipe
+  ],
+  styleUrls: [&#x27;./home.component.css&#x27;]
+})
+export class HomeComponent implements OnInit, AfterViewInit {
+
+  /**
+   * Lista de productos destacados.
+   */
+  products: Products[] &#x3D; [];
+
+  /**
+   * Lista de productos dividida en chunks para mostrar en el carrusel.
+   */
+  chunkedProducts: Products[][] &#x3D; [];
+
+  /**
+   * Posición horizontal del snack bar.
+   */
+  horizontalPosition: MatSnackBarHorizontalPosition &#x3D; &#x27;start&#x27;;
+
+  /**
+   * Posición vertical del snack bar.
+   */
+  verticalPosition: MatSnackBarVerticalPosition &#x3D; &#x27;bottom&#x27;;
+
+  /**
+   * Constructor del componente HomeComponent.
+   *
+   * @param dataService Servicio para obtener los datos de los productos.
+   * @param cartService Servicio para manejar el carrito de compras.
+   * @param snackBar MatSnackBar para mostrar mensajes.
+   */
+  constructor(private dataService: DataService,
+              private cartService: CartService,
+              private snackBar: MatSnackBar) { }
+
+  /**
+   * Inicializa el componente y carga los productos destacados.
+   */
+  ngOnInit(): void {
+    this.dataService.getProducts().subscribe(x &#x3D;&gt; {
+      this.products &#x3D; x.outstanding;
+      this.chunkedProducts &#x3D; this.chunk(this.products, 3);
+    });
+  }
+
+  /**
+   * Divide una lista de elementos en chunks de un tamaño específico.
+   *
+   * @param arr Lista de elementos a dividir.
+   * @param chunkSize Tamaño de cada chunk.
+   * @returns Lista de chunks.
+   */
+  chunk(arr: any[], chunkSize: number): any[] {
+    let R &#x3D; [];
+    for (let i &#x3D; 0; i &lt; arr.length; i +&#x3D; chunkSize)
+      R.push(arr.slice(i, i + chunkSize));
+    return R;
+  }
+
+  /**
+   * Genera una lista de clases de estrellas para mostrar la calificación de un producto.
+   *
+   * @param rating Calificación del producto.
+   * @returns Lista de clases de estrellas.
+   */
+  getStars(rating: number): string[] {
+    return Array.from({ length: 5 }, (_, i) &#x3D;&gt; i &lt; rating ? &#x27;fas fa-star text-warning&#x27; : &#x27;far fa-star text-warning&#x27;);
+  }
+
+  /**
+   * Inicializa el carrusel de productos destacados utilizando jQuery.
+   */
+  ngAfterViewInit(): void {
+    $(&#x27;#featuredProductsCarousel&#x27;).carousel({
+      interval: 2000
+    });
+  }
+
+  /**
+   * Agrega un producto al carrito y muestra un mensaje de confirmación.
+   *
+   * @param product Producto a agregar al carrito.
+   */
+  addToCart(product: Products): void {
+    this.cartService.addToCart(product);
+    this.snackBar.open(&#x27;Producto agregado al carrito!&#x27;, &#x27;&#x27;, {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 3000,
+      panelClass: [&#x27;custom-snackbar&#x27;]
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container mt-5&quot;&gt;
+  &lt;h2 class&#x3D;&quot;text-center&quot;&gt;Productos Destacados&lt;/h2&gt;
+  &lt;div id&#x3D;&quot;featuredProductsCarousel&quot; class&#x3D;&quot;carousel slide&quot; data-bs-ride&#x3D;&quot;carousel&quot; data-bs-interval&#x3D;&quot;2000&quot;&gt;
+    &lt;div class&#x3D;&quot;carousel-inner&quot;&gt;
+      &lt;div class&#x3D;&quot;carousel-item&quot; *ngFor&#x3D;&quot;let group of chunkedProducts; let i &#x3D; index&quot; [class.active]&#x3D;&quot;i &#x3D;&#x3D;&#x3D; 0&quot;&gt;
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+          &lt;div class&#x3D;&quot;col-md-4&quot; *ngFor&#x3D;&quot;let product of group&quot;&gt;
+            &lt;div class&#x3D;&quot;card mb-4 product-card&quot;&gt;
+              &lt;img src&#x3D;&quot;{{product.image}}&quot; class&#x3D;&quot;card-img-top&quot;&gt;
+              &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;span class&#x3D;&quot;badge badge-success&quot;&gt;Llega hoy&lt;/span&gt;
+                &lt;h5 class&#x3D;&quot;card-title&quot;&gt;{{product.name}}&lt;/h5&gt;
+                &lt;p class&#x3D;&quot;card-text&quot;&gt;{{product.description}}&lt;/p&gt;
+                &lt;p class&#x3D;&quot;card-price&quot;&gt;{{product.price | customCurrency}} &lt;span class&#x3D;&quot;badge bg-danger&quot;&gt;{{product.discount}}%&lt;/span&gt;&lt;/p&gt;
+                &lt;p class&#x3D;&quot;card-text&quot;&gt;&lt;del&gt;{{product.originalPrice | customCurrency}}&lt;/del&gt;&lt;/p&gt;
+                &lt;div class&#x3D;&quot;rating&quot;&gt;
+                  &lt;ng-container *ngFor&#x3D;&quot;let star of getStars(product.rating)&quot;&gt;
+                    &lt;i [ngClass]&#x3D;&quot;star&quot;&gt;&lt;/i&gt;
+                  &lt;/ng-container&gt;
+                  ({{ product.reviews }})
+                &lt;/div&gt;
+                &lt;button class&#x3D;&quot;btn btn-primary btn-block&quot;  (click)&#x3D;&quot;addToCart(product)&quot;&gt;Agregar al Carrito&lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button class&#x3D;&quot;carousel-control-prev&quot; type&#x3D;&quot;button&quot; data-bs-target&#x3D;&quot;#featuredProductsCarousel&quot; data-bs-slide&#x3D;&quot;prev&quot;&gt;
+      &lt;span class&#x3D;&quot;carousel-control-prev-icon&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;span class&#x3D;&quot;visually-hidden&quot;&gt;Anterior&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;button class&#x3D;&quot;carousel-control-next&quot; type&#x3D;&quot;button&quot; data-bs-target&#x3D;&quot;#featuredProductsCarousel&quot; data-bs-slide&#x3D;&quot;next&quot;&gt;
+      &lt;span class&#x3D;&quot;carousel-control-next-icon&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;span class&#x3D;&quot;visually-hidden&quot;&gt;Siguiente&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./home.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.bg-info {
+  background-color: #17a2b8 !important;
+}
+
+.jumbotron {
+  height: 250px;
+}
+
+
+
+
+.custom-button {
+  color: #fff;
+  border-color: #ff4081;
+  background-color: #7cda43;
+
+  &amp;:hover {
+    background-color: #303f9f;
+    border-color: #ff4081;
+  }
+}
+
+.custom-snackbar {
+  background-color: #4dff40 !important;
+  color: #fff !important;
+}
+
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container mt-5">  <h2 class="text-center">Productos Destacados</h2>  <div id="featuredProductsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">    <div class="carousel-inner">      <div class="carousel-item" *ngFor="let group of chunkedProducts; let i = index" [class.active]="i === 0">        <div class="row">          <div class="col-md-4" *ngFor="let product of group">            <div class="card mb-4 product-card">              <img src="{{product.image}}" class="card-img-top">              <div class="card-body">                <span class="badge badge-success">Llega hoy</span>                <h5 class="card-title">{{product.name}}</h5>                <p class="card-text">{{product.description}}</p>                <p class="card-price">{{product.price | customCurrency}} <span class="badge bg-danger">{{product.discount}}%</span></p>                <p class="card-text"><del>{{product.originalPrice | customCurrency}}</del></p>                <div class="rating">                  <ng-container *ngFor="let star of getStars(product.rating)">                    <i [ngClass]="star"></i>                  </ng-container>                  ({{ product.reviews }})                </div>                <button class="btn btn-primary btn-block"  (click)="addToCart(product)">Agregar al Carrito</button>              </div>            </div>          </div>        </div>      </div>    </div>    <button class="carousel-control-prev" type="button" data-bs-target="#featuredProductsCarousel" data-bs-slide="prev">      <span class="carousel-control-prev-icon" aria-hidden="true"></span>      <span class="visually-hidden">Anterior</span>    </button>    <button class="carousel-control-next" type="button" data-bs-target="#featuredProductsCarousel" data-bs-slide="next">      <span class="carousel-control-next-icon" aria-hidden="true"></span>      <span class="visually-hidden">Siguiente</span>    </button>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AccountComponent', 'selector': 'app-account'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AirConditioningComponent', 'selector': 'app-air-conditioning'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CellPhonesComponent', 'selector': 'app-cell-phones'},{'name': 'CoffeeMakersComponent', 'selector': 'app-coffee-makers'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GridComponent', 'selector': 'app-grid'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginModalComponent', 'selector': 'app-login-modal'},{'name': 'NotebooksComponent', 'selector': 'app-notebooks'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'RecoverPasswordComponent', 'selector': 'app-recover-password'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'UserModalComponent', 'selector': 'app-user-modal'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'HomeComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'HomeComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

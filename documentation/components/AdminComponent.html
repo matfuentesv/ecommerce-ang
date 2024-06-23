@@ -1,0 +1,1775 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ecommerce-ang documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">ecommerce-ang documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AdminComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/pages/admin/admin.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Este componente maneja la administración de productos y usuarios en la aplicación.
+Permite agregar nuevos productos, listar usuarios y gestionar sus roles.</p>
+<p>Este componente debe ser utilizado dentro del módulo de administración de la aplicación.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;app-admin&gt;&lt;/app-admin&gt;</code></pre></div>
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>AfterViewInit</code>
+                <code>AfterViewChecked</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-admin</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>ReactiveFormsModule</code>
+                            <code>NgIf</code>
+                            <code>MatTable</code>
+                            <code>MatHeaderCell</code>
+                            <code>MatCell</code>
+                            <code>MatColumnDef</code>
+                            <code>MatHeaderRow</code>
+                            <code>MatRow</code>
+                            <code>MatCellDef</code>
+                            <code>MatRowDef</code>
+                            <code>MatHeaderCellDef</code>
+                            <code>MatHeaderRowDef</code>
+                            <code>MatPaginator</code>
+                            <code>MatSpinner</code>
+                            <code>NgClass</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./admin.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./admin.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentSection" >currentSection</a>
+                            </li>
+                            <li>
+                                <a href="#dataSource" >dataSource</a>
+                            </li>
+                            <li>
+                                <a href="#displayedColumns" >displayedColumns</a>
+                            </li>
+                            <li>
+                                <a href="#horizontalPosition" >horizontalPosition</a>
+                            </li>
+                            <li>
+                                <a href="#isLoadingResults" >isLoadingResults</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#paginator" >paginator</a>
+                            </li>
+                            <li>
+                                <a href="#productForm" >productForm</a>
+                            </li>
+                            <li>
+                                <a href="#resultsLength" >resultsLength</a>
+                            </li>
+                            <li>
+                                <a href="#verticalPosition" >verticalPosition</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initializePaginator" >initializePaginator</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadData" >loadData</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewChecked" >ngAfterViewChecked</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmitProduct" >onSubmitProduct</a>
+                            </li>
+                            <li>
+                                <a href="#openModal" >openModal</a>
+                            </li>
+                            <li>
+                                <a href="#showSection" >showSection</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#validProductName" >validProductName</a>
+                                </li>
+                                <li>
+                                    <a href="#validProductDescription" >validProductDescription</a>
+                                </li>
+                                <li>
+                                    <a href="#validProductPrice" >validProductPrice</a>
+                                </li>
+                                <li>
+                                    <a href="#validProductCategory" >validProductCategory</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: FormBuilder, userService: <a href="../injectables/DataService.html" target="_self">DataService</a>, cdr: ChangeDetectorRef, ngZone: NgZone, dialog: MatDialog, snackBar: MatSnackBar)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:93</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor del componente AdminComponent.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>FormBuilder para crear formularios.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DataService.html" target="_self" >DataService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Servicio de datos para usuarios.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>cdr</td>
+                                                  
+                                                        <td>
+                                                                    <code>ChangeDetectorRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>ChangeDetectorRef para detectar cambios.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>ngZone</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgZone</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>NgZone para manejar cambios de zona.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>MatDialog para manejar modales.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>MatSnackBar para notificaciones.</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initializePaginator"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>initializePaginator</b></span>
+                        <a href="#initializePaginator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initializePaginator()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="149"
+                                    class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:149</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Inicializa el paginador para la tabla de usuarios.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadData"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>loadData</b></span>
+                        <a href="#loadData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="182"
+                                    class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:182</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga los datos de usuarios.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewChecked"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewChecked</b></span>
+                        <a href="#ngAfterViewChecked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewChecked()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="142"
+                                    class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:142</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Método llamado después de que la vista se ha verificado.
+Configura el paginador para la tabla de usuarios.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="132"
+                                    class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:132</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Método llamado después de que la vista se ha inicializado.
+Configura el paginador para la tabla de usuarios.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:124</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Inicializa el componente y carga los datos iniciales.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmitProduct"></a>
+                    <span class="name">
+                        <span ><b>onSubmitProduct</b></span>
+                        <a href="#onSubmitProduct"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmitProduct()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="205"
+                                    class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:205</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Maneja el envío del formulario de producto.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openModal"></a>
+                    <span class="name">
+                        <span ><b>openModal</b></span>
+                        <a href="#openModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="250"
+                                    class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:250</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Abre el modal de usuario.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showSection"></a>
+                    <span class="name">
+                        <span ><b>showSection</b></span>
+                        <a href="#showSection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showSection(event: Event, section: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="197"
+                                    class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:197</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Muestra una sección específica en la interfaz de administración.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Evento del click.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>section</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Sección a mostrar.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentSection"></a>
+                    <span class="name">
+                        <span ><b>currentSection</b></span>
+                        <a href="#currentSection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;products&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sección actual que se muestra en la interfaz de administración.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataSource"></a>
+                    <span class="name">
+                        <span ><b>dataSource</b></span>
+                        <a href="#dataSource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MatTableDataSource&lt;User&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Fuente de datos para la tabla de usuarios.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayedColumns"></a>
+                    <span class="name">
+                        <span ><b>displayedColumns</b></span>
+                        <a href="#displayedColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x27;firstName&#x27;, &#x27;lastName&#x27;, &#x27;email&#x27;, &#x27;phone&#x27;, &#x27;address&#x27;, &#x27;roles&#x27;]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Columnas que se muestran en la tabla de usuarios.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="horizontalPosition"></a>
+                    <span class="name">
+                        <span ><b>horizontalPosition</b></span>
+                        <a href="#horizontalPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatSnackBarHorizontalPosition</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;start&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Posición horizontal de las notificaciones.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isLoadingResults"></a>
+                    <span class="name">
+                        <span ><b>isLoadingResults</b></span>
+                        <a href="#isLoadingResults"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indicador de carga de resultados.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="paginator"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>paginator</b></span>
+                        <a href="#paginator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatPaginator</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(MatPaginator)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="productForm"></a>
+                    <span class="name">
+                        <span ><b>productForm</b></span>
+                        <a href="#productForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Formulario para agregar un nuevo producto.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resultsLength"></a>
+                    <span class="name">
+                        <span ><b>resultsLength</b></span>
+                        <a href="#resultsLength"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Número total de resultados en la tabla.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="verticalPosition"></a>
+                    <span class="name">
+                        <span ><b>verticalPosition</b></span>
+                        <a href="#verticalPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatSnackBarVerticalPosition</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;bottom&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Posición vertical de las notificaciones.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="validProductName"></a>
+                        <span class="name"><b>validProductName</b><a href="#validProductName"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>validProductName()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:222</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Verifica si el nombre del producto es válido.</p>
+</div>
+
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="validProductDescription"></a>
+                        <span class="name"><b>validProductDescription</b><a href="#validProductDescription"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>validProductDescription()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="229" class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:229</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Verifica si la descripción del producto es válida.</p>
+</div>
+
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="validProductPrice"></a>
+                        <span class="name"><b>validProductPrice</b><a href="#validProductPrice"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>validProductPrice()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="236" class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:236</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Verifica si el precio del producto es válido.</p>
+</div>
+
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="validProductCategory"></a>
+                        <span class="name"><b>validProductCategory</b><a href="#validProductCategory"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>validProductCategory()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="243" class="link-to-prism">src/app/modules/pages/admin/admin.component.ts:243</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Verifica si la categoría del producto es válida.</p>
+</div>
+
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, NgZone, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from &quot;@angular/forms&quot;;
+import { NgClass, NgIf } from &quot;@angular/common&quot;;
+import { DataService } from &quot;../../../core/services/data/data.service&quot;;
+import {
+  MatCell, MatCellDef, MatColumnDef, MatHeaderCell, MatHeaderCellDef, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable, MatTableDataSource,
+} from &quot;@angular/material/table&quot;;
+import { MatPaginator } from &quot;@angular/material/paginator&quot;;
+import { User } from &quot;../../../shared/models/user&quot;;
+import { catchError, map, merge, of, startWith, switchMap } from &quot;rxjs&quot;;
+import { MatSpinner } from &quot;@angular/material/progress-spinner&quot;;
+import { MatDialog } from &quot;@angular/material/dialog&quot;;
+import { UserModalComponent } from &quot;../../../shared/components/user-modal/user-modal.component&quot;;
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from &quot;@angular/material/snack-bar&quot;;
+
+/**
+ * @description
+ * Este componente maneja la administración de productos y usuarios en la aplicación.
+ * Permite agregar nuevos productos, listar usuarios y gestionar sus roles.
+ *
+ * @usageNotes
+ * Este componente debe ser utilizado dentro del módulo de administración de la aplicación.
+ *
+ *
+ * @example
+ * &lt;app-admin&gt;&lt;/app-admin&gt;
+ */
+@Component({
+  selector: &#x27;app-admin&#x27;,
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    NgIf,
+    MatTable,
+    MatHeaderCell,
+    MatCell,
+    MatColumnDef,
+    MatHeaderRow,
+    MatRow,
+    MatCellDef,
+    MatRowDef,
+    MatHeaderCellDef,
+    MatHeaderRowDef,
+    MatPaginator,
+    MatSpinner,
+    NgClass
+  ],
+  templateUrl: &#x27;./admin.component.html&#x27;,
+  styleUrl: &#x27;./admin.component.css&#x27;
+})
+export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
+
+  /**
+   * Sección actual que se muestra en la interfaz de administración.
+   */
+  currentSection: string &#x3D; &#x27;products&#x27;;
+
+  /**
+   * Formulario para agregar un nuevo producto.
+   */
+  productForm: FormGroup;
+
+  /**
+   * Posición horizontal de las notificaciones.
+   */
+  horizontalPosition: MatSnackBarHorizontalPosition &#x3D; &#x27;start&#x27;;
+
+  /**
+   * Posición vertical de las notificaciones.
+   */
+  verticalPosition: MatSnackBarVerticalPosition &#x3D; &#x27;bottom&#x27;;
+
+  /**
+   * Columnas que se muestran en la tabla de usuarios.
+   */
+  displayedColumns: string[] &#x3D; [&#x27;firstName&#x27;, &#x27;lastName&#x27;, &#x27;email&#x27;, &#x27;phone&#x27;, &#x27;address&#x27;, &#x27;roles&#x27;];
+
+  /**
+   * Fuente de datos para la tabla de usuarios.
+   */
+  dataSource &#x3D; new MatTableDataSource&lt;User&gt;();
+
+  /**
+   * Número total de resultados en la tabla.
+   */
+  resultsLength &#x3D; 0;
+
+  /**
+   * Indicador de carga de resultados.
+   */
+  isLoadingResults &#x3D; true;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  /**
+   * Constructor del componente AdminComponent.
+   *
+   * @param fb FormBuilder para crear formularios.
+   * @param userService Servicio de datos para usuarios.
+   * @param cdr ChangeDetectorRef para detectar cambios.
+   * @param ngZone NgZone para manejar cambios de zona.
+   * @param dialog MatDialog para manejar modales.
+   * @param snackBar MatSnackBar para notificaciones.
+   */
+  constructor(private fb: FormBuilder,
+              private userService: DataService,
+              private cdr: ChangeDetectorRef,
+              private ngZone: NgZone,
+              private dialog: MatDialog,
+              private snackBar: MatSnackBar) {
+
+    this.productForm &#x3D; this.fb.group({
+      productName: [&#x27;&#x27;, Validators.required],
+      description: [&#x27;&#x27;, Validators.required],
+      price: [&#x27;&#x27;, Validators.required],
+      category: [&#x27;&#x27;, Validators.required],
+      image: [&#x27;&#x27;]
+    });
+  }
+
+  /**
+   * Inicializa el componente y carga los datos iniciales.
+   */
+  ngOnInit() {
+    this.loadData();
+  }
+
+  /**
+   * Método llamado después de que la vista se ha inicializado.
+   * Configura el paginador para la tabla de usuarios.
+   */
+  ngAfterViewInit() {
+    setTimeout(() &#x3D;&gt; {
+      this.initializePaginator();
+    });
+  }
+
+  /**
+   * Método llamado después de que la vista se ha verificado.
+   * Configura el paginador para la tabla de usuarios.
+   */
+  ngAfterViewChecked() {
+    this.initializePaginator();
+  }
+
+  /**
+   * Inicializa el paginador para la tabla de usuarios.
+   */
+  private initializePaginator() {
+    if (this.paginator &amp;&amp; !this.dataSource.paginator) {
+      this.ngZone.runOutsideAngular(() &#x3D;&gt; {
+        this.dataSource.paginator &#x3D; this.paginator;
+
+        merge(this.paginator.page)
+          .pipe(
+            startWith({}),
+            switchMap(() &#x3D;&gt; {
+              this.isLoadingResults &#x3D; true;
+              return this.userService.getUsers().pipe(
+                catchError(() &#x3D;&gt; of([]))
+              );
+            }),
+            map(data &#x3D;&gt; {
+              this.isLoadingResults &#x3D; false;
+              this.resultsLength &#x3D; data.length;
+              return data;
+            })
+          )
+          .subscribe(data &#x3D;&gt; {
+            this.ngZone.run(() &#x3D;&gt; {
+              this.dataSource.data &#x3D; data;
+              this.cdr.detectChanges();
+            });
+          });
+      });
+    }
+  }
+
+  /**
+   * Carga los datos de usuarios.
+   */
+  private loadData() {
+    this.userService.getUsers().subscribe(users &#x3D;&gt; {
+      this.dataSource.data &#x3D; users;
+      this.resultsLength &#x3D; users.length;
+      this.isLoadingResults &#x3D; false;
+      this.cdr.detectChanges();
+    });
+  }
+
+  /**
+   * Muestra una sección específica en la interfaz de administración.
+   *
+   * @param event Evento del click.
+   * @param section Sección a mostrar.
+   */
+  showSection(event: Event, section: string): void {
+    event.preventDefault();
+    this.currentSection &#x3D; section;
+  }
+
+  /**
+   * Maneja el envío del formulario de producto.
+   */
+  onSubmitProduct(): void {
+    if (this.productForm.valid) {
+      console.log(this.productForm.value);
+      this.snackBar.open(&#x27;Producto agregado con exito!&#x27;, &#x27;&#x27;, {
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+        duration: 3000,
+        panelClass: [&#x27;custom-snackbar&#x27;]
+      });
+    } else {
+      this.productForm.markAllAsTouched();
+    }
+  }
+
+  /**
+   * Verifica si el nombre del producto es válido.
+   */
+  get validProductName() {
+    return this.productForm.get(&#x27;productName&#x27;)?.invalid &amp;&amp; this.productForm.get(&#x27;productName&#x27;)?.touched;
+  }
+
+  /**
+   * Verifica si la descripción del producto es válida.
+   */
+  get validProductDescription() {
+    return this.productForm.get(&#x27;description&#x27;)?.invalid &amp;&amp; this.productForm.get(&#x27;description&#x27;)?.touched;
+  }
+
+  /**
+   * Verifica si el precio del producto es válido.
+   */
+  get validProductPrice() {
+    return this.productForm.get(&#x27;price&#x27;)?.invalid &amp;&amp; this.productForm.get(&#x27;price&#x27;)?.touched;
+  }
+
+  /**
+   * Verifica si la categoría del producto es válida.
+   */
+  get validProductCategory() {
+    return this.productForm.get(&#x27;category&#x27;)?.invalid &amp;&amp; this.productForm.get(&#x27;category&#x27;)?.touched;
+  }
+
+  /**
+   * Abre el modal de usuario.
+   */
+  openModal() {
+    this.dialog.open(UserModalComponent);
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;admin-container&quot;&gt;
+  &lt;div class&#x3D;&quot;sidebar&quot;&gt;
+    &lt;h2&gt;Panel de Administración&lt;/h2&gt;
+    &lt;ul class&#x3D;&quot;nav flex-column&quot;&gt;
+      &lt;li class&#x3D;&quot;nav-item&quot;&gt;
+        &lt;a class&#x3D;&quot;nav-link&quot; [class.active]&#x3D;&quot;currentSection &#x3D;&#x3D;&#x3D; &#x27;products&#x27;&quot; (click)&#x3D;&quot;showSection($event, &#x27;products&#x27;)&quot; href&#x3D;&quot;javascript:void(0);&quot;&gt;Gestionar Productos&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li class&#x3D;&quot;nav-item&quot;&gt;
+        &lt;a class&#x3D;&quot;nav-link&quot; [class.active]&#x3D;&quot;currentSection &#x3D;&#x3D;&#x3D; &#x27;users&#x27;&quot; (click)&#x3D;&quot;showSection($event, &#x27;users&#x27;)&quot; href&#x3D;&quot;javascript:void(0);&quot;&gt;Gestionar Usuarios&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;main-content&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;currentSection &#x3D;&#x3D;&#x3D; &#x27;products&#x27;&quot;&gt;
+      &lt;h3&gt;Gestionar Productos&lt;/h3&gt;
+      &lt;form [formGroup]&#x3D;&quot;productForm&quot; (ngSubmit)&#x3D;&quot;onSubmitProduct()&quot;&gt;
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;label for&#x3D;&quot;productName&quot;&gt;Nombre del Producto&lt;/label&gt;
+          &lt;input [ngClass]&#x3D;&quot;{&#x27;input-error&#x27;:validProductName}&quot; type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;productName&quot; placeholder&#x3D;&quot;Nombre del Producto&quot; formControlName&#x3D;&quot;productName&quot; required&gt;
+          &lt;div *ngIf&#x3D;&quot;productForm.get(&#x27;productName&#x27;)?.invalid &amp;&amp; productForm.get(&#x27;productName&#x27;)?.touched&quot;&gt;
+            &lt;small class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;productForm.get(&#x27;productName&#x27;)?.errors?.[&#x27;required&#x27;]&quot;&gt;El nombre es obligatorio.&lt;/small&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;label for&#x3D;&quot;description&quot;&gt;Descripción&lt;/label&gt;
+          &lt;textarea [ngClass]&#x3D;&quot;{&#x27;input-error&#x27;:validProductDescription}&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;description&quot; rows&#x3D;&quot;3&quot; placeholder&#x3D;&quot;Descripción&quot; formControlName&#x3D;&quot;description&quot; required&gt;&lt;/textarea&gt;
+          &lt;div *ngIf&#x3D;&quot;productForm.get(&#x27;description&#x27;)?.invalid &amp;&amp; productForm.get(&#x27;description&#x27;)?.touched&quot;&gt;
+            &lt;small class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;productForm.get(&#x27;description&#x27;)?.errors?.[&#x27;required&#x27;]&quot;&gt;La descripción es obligatorio.&lt;/small&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;label for&#x3D;&quot;price&quot;&gt;Precio&lt;/label&gt;
+          &lt;input [ngClass]&#x3D;&quot;{&#x27;input-error&#x27;:validProductPrice}&quot; type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;price&quot; placeholder&#x3D;&quot;Precio&quot; formControlName&#x3D;&quot;price&quot; required&gt;
+          &lt;div *ngIf&#x3D;&quot;productForm.get(&#x27;price&#x27;)?.invalid &amp;&amp; productForm.get(&#x27;price&#x27;)?.touched&quot;&gt;
+            &lt;small class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;productForm.get(&#x27;price&#x27;)?.errors?.[&#x27;required&#x27;]&quot;&gt;El precio obligatorio.&lt;/small&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;label for&#x3D;&quot;category&quot;&gt;Categoría&lt;/label&gt;
+          &lt;select [ngClass]&#x3D;&quot;{&#x27;input-error&#x27;:validProductCategory}&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;category&quot; formControlName&#x3D;&quot;category&quot; required&gt;
+            &lt;option&gt;Computadoras&lt;/option&gt;
+            &lt;option&gt;Celulares&lt;/option&gt;
+            &lt;option&gt;Aire acondicionado&lt;/option&gt;
+            &lt;option&gt;Cafeteras eléctricas&lt;/option&gt;
+          &lt;/select&gt;
+          &lt;div *ngIf&#x3D;&quot;productForm.get(&#x27;category&#x27;)?.invalid &amp;&amp; productForm.get(&#x27;category&#x27;)?.touched&quot;&gt;
+            &lt;small class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;productForm.get(&#x27;category&#x27;)?.errors?.[&#x27;required&#x27;]&quot;&gt;La categoria es obligatorio.&lt;/small&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;label for&#x3D;&quot;image&quot;&gt;Imagen&lt;/label&gt;
+          &lt;input type&#x3D;&quot;file&quot; class&#x3D;&quot;form-control-file&quot; id&#x3D;&quot;image&quot; formControlName&#x3D;&quot;image&quot;&gt;
+        &lt;/div&gt;
+        &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-primary btn-block&quot;&gt;Agregar Producto&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+    &lt;div *ngIf&#x3D;&quot;currentSection &#x3D;&#x3D;&#x3D; &#x27;users&#x27;&quot;&gt;
+      &lt;h3&gt;Gestionar Usuarios&lt;/h3&gt;
+      &lt;div class&#x3D;&quot;right-align-button&quot;&gt;
+        &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;openModal()&quot; class&#x3D;&quot;btn btn-primary&quot;&gt;Agregar&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;table mat-table [dataSource]&#x3D;&quot;dataSource&quot; class&#x3D;&quot;mat-elevation-z8&quot;&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;firstName&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt; Nombre &lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let user&quot;&gt; {{user.firstName}} &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;ng-container matColumnDef&#x3D;&quot;lastName&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt; Apellidos &lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let user&quot;&gt; {{user.lastName}} &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;ng-container matColumnDef&#x3D;&quot;email&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt; Correo &lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let user&quot;&gt; {{user.email}} &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;ng-container matColumnDef&#x3D;&quot;phone&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt; Teléfono &lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let user&quot;&gt; {{user.phone}} &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;ng-container matColumnDef&#x3D;&quot;address&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt; Dirección &lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let user&quot;&gt; {{user.address}} &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;ng-container matColumnDef&#x3D;&quot;roles&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt; Roles &lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let user&quot;&gt; {{user.roles.join(&#x27;, &#x27;)}} &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumns&quot;&gt;&lt;/tr&gt;
+        &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumns;&quot;&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+      &lt;mat-paginator [length]&#x3D;&quot;resultsLength&quot; [pageSize]&#x3D;&quot;10&quot; [pageSizeOptions]&#x3D;&quot;[5, 10, 20]&quot; aria-label&#x3D;&quot;Select page&quot;&gt;&lt;/mat-paginator&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;ng-template #loading&gt;
+  &lt;div class&#x3D;&quot;loading-container&quot;&gt;
+    &lt;mat-spinner&gt;&lt;/mat-spinner&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="admin-container">  <div class="sidebar">    <h2>Panel de Administración</h2>    <ul class="nav flex-column">      <li class="nav-item">        <a class="nav-link" [class.active]="currentSection === \'products\'" (click)="showSection($event, \'products\')" href="javascript:void(0);">Gestionar Productos</a>      </li>      <li class="nav-item">        <a class="nav-link" [class.active]="currentSection === \'users\'" (click)="showSection($event, \'users\')" href="javascript:void(0);">Gestionar Usuarios</a>      </li>    </ul>  </div>  <div class="main-content">    <div *ngIf="currentSection === \'products\'">      <h3>Gestionar Productos</h3>      <form [formGroup]="productForm" (ngSubmit)="onSubmitProduct()">        <div class="form-group">          <label for="productName">Nombre del Producto</label>          <input [ngClass]="{\'input-error\':validProductName}" type="text" class="form-control" id="productName" placeholder="Nombre del Producto" formControlName="productName" required>          <div *ngIf="productForm.get(\'productName\')?.invalid && productForm.get(\'productName\')?.touched">            <small class="error" *ngIf="productForm.get(\'productName\')?.errors?.[\'required\']">El nombre es obligatorio.</small>          </div>        </div>        <div class="form-group">          <label for="description">Descripción</label>          <textarea [ngClass]="{\'input-error\':validProductDescription}" class="form-control" id="description" rows="3" placeholder="Descripción" formControlName="description" required></textarea>          <div *ngIf="productForm.get(\'description\')?.invalid && productForm.get(\'description\')?.touched">            <small class="error" *ngIf="productForm.get(\'description\')?.errors?.[\'required\']">La descripción es obligatorio.</small>          </div>        </div>        <div class="form-group">          <label for="price">Precio</label>          <input [ngClass]="{\'input-error\':validProductPrice}" type="number" class="form-control" id="price" placeholder="Precio" formControlName="price" required>          <div *ngIf="productForm.get(\'price\')?.invalid && productForm.get(\'price\')?.touched">            <small class="error" *ngIf="productForm.get(\'price\')?.errors?.[\'required\']">El precio obligatorio.</small>          </div>        </div>        <div class="form-group">          <label for="category">Categoría</label>          <select [ngClass]="{\'input-error\':validProductCategory}" class="form-control" id="category" formControlName="category" required>            <option>Computadoras</option>            <option>Celulares</option>            <option>Aire acondicionado</option>            <option>Cafeteras eléctricas</option>          </select>          <div *ngIf="productForm.get(\'category\')?.invalid && productForm.get(\'category\')?.touched">            <small class="error" *ngIf="productForm.get(\'category\')?.errors?.[\'required\']">La categoria es obligatorio.</small>          </div>        </div>        <div class="form-group">          <label for="image">Imagen</label>          <input type="file" class="form-control-file" id="image" formControlName="image">        </div>        <button type="submit" class="btn btn-primary btn-block">Agregar Producto</button>      </form>    </div>    <div *ngIf="currentSection === \'users\'">      <h3>Gestionar Usuarios</h3>      <div class="right-align-button">        <button type="button" (click)="openModal()" class="btn btn-primary">Agregar</button>      </div>      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">        <ng-container matColumnDef="firstName">          <th mat-header-cell *matHeaderCellDef> Nombre </th>          <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>        </ng-container>        <ng-container matColumnDef="lastName">          <th mat-header-cell *matHeaderCellDef> Apellidos </th>          <td mat-cell *matCellDef="let user"> {{user.lastName}} </td>        </ng-container>        <ng-container matColumnDef="email">          <th mat-header-cell *matHeaderCellDef> Correo </th>          <td mat-cell *matCellDef="let user"> {{user.email}} </td>        </ng-container>        <ng-container matColumnDef="phone">          <th mat-header-cell *matHeaderCellDef> Teléfono </th>          <td mat-cell *matCellDef="let user"> {{user.phone}} </td>        </ng-container>        <ng-container matColumnDef="address">          <th mat-header-cell *matHeaderCellDef> Dirección </th>          <td mat-cell *matCellDef="let user"> {{user.address}} </td>        </ng-container>        <ng-container matColumnDef="roles">          <th mat-header-cell *matHeaderCellDef> Roles </th>          <td mat-cell *matCellDef="let user"> {{user.roles.join(\', \')}} </td>        </ng-container>        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>      </table>      <mat-paginator [length]="resultsLength" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" aria-label="Select page"></mat-paginator>    </div>  </div></div><ng-template #loading>  <div class="loading-container">    <mat-spinner></mat-spinner>  </div></ng-template></div>'
+    var COMPONENTS = [{'name': 'AccountComponent', 'selector': 'app-account'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AirConditioningComponent', 'selector': 'app-air-conditioning'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CellPhonesComponent', 'selector': 'app-cell-phones'},{'name': 'CoffeeMakersComponent', 'selector': 'app-coffee-makers'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GridComponent', 'selector': 'app-grid'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginModalComponent', 'selector': 'app-login-modal'},{'name': 'NotebooksComponent', 'selector': 'app-notebooks'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'RecoverPasswordComponent', 'selector': 'app-recover-password'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'UserModalComponent', 'selector': 'app-user-modal'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AdminComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AdminComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
