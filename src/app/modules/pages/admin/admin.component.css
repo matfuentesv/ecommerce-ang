@@ -90,3 +90,14 @@
 .right-align-button {
   text-align: right;
 }
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.input-error {
+  border: 1px solid red;
+  outline: none;
+}
+

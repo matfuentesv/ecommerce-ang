@@ -16,24 +16,36 @@
       <form [formGroup]="productForm" (ngSubmit)="onSubmitProduct()">
         <div class="form-group">
           <label for="productName">Nombre del Producto</label>
-          <input type="text" class="form-control" id="productName" placeholder="Nombre del Producto" formControlName="productName" required>
+          <input [ngClass]="{'input-error':validProductName}" type="text" class="form-control" id="productName" placeholder="Nombre del Producto" formControlName="productName" required>
+          <div *ngIf="productForm.get('productName')?.invalid && productForm.get('productName')?.touched">
+            <small class="error" *ngIf="productForm.get('productName')?.errors?.['required']">El nombre es obligatorio.</small>
+          </div>
         </div>
         <div class="form-group">
           <label for="description">Descripción</label>
-          <textarea class="form-control" id="description" rows="3" placeholder="Descripción" formControlName="description" required></textarea>
+          <textarea [ngClass]="{'input-error':validProductDescription}" class="form-control" id="description" rows="3" placeholder="Descripción" formControlName="description" required></textarea>
+          <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched">
+            <small class="error" *ngIf="productForm.get('description')?.errors?.['required']">La descripción es obligatorio.</small>
+          </div>
         </div>
         <div class="form-group">
           <label for="price">Precio</label>
-          <input type="number" class="form-control" id="price" placeholder="Precio" formControlName="price" required>
+          <input [ngClass]="{'input-error':validProductPrice}" type="number" class="form-control" id="price" placeholder="Precio" formControlName="price" required>
+          <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
+            <small class="error" *ngIf="productForm.get('price')?.errors?.['required']">El precio obligatorio.</small>
+          </div>
         </div>
         <div class="form-group">
           <label for="category">Categoría</label>
-          <select class="form-control" id="category" formControlName="category" required>
+          <select [ngClass]="{'input-error':validProductCategory}" class="form-control" id="category" formControlName="category" required>
             <option>Computadoras</option>
             <option>Celulares</option>
             <option>Aire acondicionado</option>
             <option>Cafeteras eléctricas</option>
           </select>
+          <div *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched">
+            <small class="error" *ngIf="productForm.get('category')?.errors?.['required']">La categoria es obligatorio.</small>
+          </div>
         </div>
         <div class="form-group">
           <label for="image">Imagen</label>

@@ -1,6 +1,6 @@
 import {AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, NgZone, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {NgIf} from "@angular/common";
+import {NgClass, NgIf} from "@angular/common";
 import {DataService} from "../../../core/services/data/data.service";
 import {
   MatCell, MatCellDef,
@@ -12,12 +12,12 @@ import {
 } from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {User} from "../../../shared/models/user";
-import { MatPaginatorModule } from '@angular/material/paginator';
-import {MatSort} from "@angular/material/sort";
+
 import {catchError, map, merge, of, startWith, switchMap} from "rxjs";
 import {MatSpinner} from "@angular/material/progress-spinner";
 import {MatDialog} from "@angular/material/dialog";
 import {UserModalComponent} from "../../../shared/components/user-modal/user-modal.component";
+import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-admin',
@@ -36,7 +36,8 @@ import {UserModalComponent} from "../../../shared/components/user-modal/user-mod
     MatHeaderCellDef,
     MatHeaderRowDef,
     MatPaginator,
-    MatSpinner
+    MatSpinner,
+    NgClass
   ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
@@ -45,8 +46,8 @@ export class AdminComponent implements OnInit, AfterViewInit,AfterViewChecked  {
 
   currentSection: string = 'products';
   productForm: FormGroup;
-  userForm: FormGroup;
-
+  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   displayedColumns: string[] = ['firstName', 'lastName', 'email', 'phone', 'address', 'roles'];
   dataSource = new MatTableDataSource<User>();
   resultsLength = 0;
@@ -57,29 +58,15 @@ export class AdminComponent implements OnInit, AfterViewInit,AfterViewChecked  {
               private userService: DataService,
               private cdr: ChangeDetectorRef,
               private ngZone: NgZone,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private snackBar: MatSnackBar) {
+
     this.productForm = this.fb.group({
       productName: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', Validators.required],
       category: ['', Validators.required],
       image: ['']
-    });
-
-    this.userForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
-      address: ['', Validators.required],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(18),
-        Validators.pattern('^(?=.*[A-Z])(?=.*\\d).+$')
-      ]],
-      confirmPassword: ['', [Validators.required]],
-      roles: ['', Validators.required]
     });
   }
 
@@ -133,7 +120,7 @@ export class AdminComponent implements OnInit, AfterViewInit,AfterViewChecked  {
       this.dataSource.data = users;
       this.resultsLength = users.length;
       this.isLoadingResults = false;
-      this.cdr.detectChanges(); // Ensure change detection after data fetch
+      this.cdr.detectChanges();
     });
   }
 
@@ -145,18 +132,33 @@ export class AdminComponent implements OnInit, AfterViewInit,AfterViewChecked  {
   onSubmitProduct(): void {
     if (this.productForm.valid) {
       console.log(this.productForm.value);
+      this.snackBar.open('Producto agregado con exito!', '', {
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+        duration: 3000,
+        panelClass: ['custom-snackbar']
+      });
     } else {
       this.productForm.markAllAsTouched();
     }
   }
 
-  onSubmitUser(): void {
-    if (this.userForm.valid) {
-      console.log(this.userForm.value);
-    } else {
-      this.userForm.markAllAsTouched();
-    }
+  get validProductName(){
+    return this.productForm.get('productName')?.invalid && this.productForm.get('productName')?.touched;
   }
+
+  get validProductDescription(){
+    return this.productForm.get('description')?.invalid && this.productForm.get('description')?.touched;
+  }
+
+  get validProductPrice(){
+    return this.productForm.get('price')?.invalid && this.productForm.get('price')?.touched;
+  }
+
+  get validProductCategory(){
+    return this.productForm.get('category')?.invalid && this.productForm.get('category')?.touched;
+  }
+
 
   openModal(){
     this.dialog.open(UserModalComponent);
