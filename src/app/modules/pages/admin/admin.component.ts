@@ -15,7 +15,7 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 import {Ng2Rut2} from "../../../shared/directives/ng2-rut/ng2-rut.module";
 import {MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
-
+import Swal from 'sweetalert2';
 /**
  * @description
  * Este componente maneja la administración de productos y usuarios en la aplicación.
@@ -269,21 +269,33 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
   }
 
   editElement(user:User){}
-  deleteElement(user: User){
-    const index = this.user.findIndex((x: any) => x.id === user.id);
+  deleteElement(user: User) {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¡No podrás revertir esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminarlo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const index = this.user.findIndex((x: any) => x.id === user.id);
 
-    if (index !== -1) {
-      this.user.splice(index, 1);
-      this.userService.addUser(this.user).subscribe(rsp=>{
-        this.snackBar.open('Usuario eliminado correctamente!', '', {
-          horizontalPosition: this.horizontalPosition,
-          verticalPosition: this.verticalPosition,
-          duration: 3000,
-          panelClass: ['custom-snackbar']
-        });
-        this.loadData();
-      })
-    }
+        if (index !== -1) {
+          this.user.splice(index, 1);
+          this.userService.addUser(this.user).subscribe((rsp) => {
+            this.snackBar.open('¡Usuario eliminado correctamente!', '', {
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+              duration: 3000,
+              panelClass: ['custom-snackbar']
+            });
+            this.loadData();
+          });
+        }
+      }
+    });
   }
 
 }
