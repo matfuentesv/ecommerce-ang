@@ -13,6 +13,8 @@ import { MatDialog } from "@angular/material/dialog";
 import { UserModalComponent } from "../../../shared/components/user-modal/user-modal.component";
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
 import {Ng2Rut2} from "../../../shared/directives/ng2-rut/ng2-rut.module";
+import {MatIconButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
 
 /**
  * @description
@@ -45,7 +47,9 @@ import {Ng2Rut2} from "../../../shared/directives/ng2-rut/ng2-rut.module";
     MatPaginator,
     MatSpinner,
     NgClass,
-    Ng2Rut2
+    Ng2Rut2,
+    MatIconButton,
+    MatIcon
   ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
@@ -75,7 +79,7 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
   /**
    * Columnas que se muestran en la tabla de usuarios.
    */
-  displayedColumns: string[] = ['firstName', 'lastName','rut', 'email', 'phone', 'address', 'roles'];
+  displayedColumns: string[] = ['firstName', 'lastName','rut', 'email', 'phone', 'address', 'roles','edit','delete'];
 
   /**
    * Fuente de datos para la tabla de usuarios.
@@ -262,6 +266,24 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
           this.loadData();
         });
     });
+  }
+
+  editElement(user:User){}
+  deleteElement(user: User){
+    const index = this.user.findIndex((x: any) => x.id === user.id);
+
+    if (index !== -1) {
+      this.user.splice(index, 1);
+      this.userService.addUser(this.user).subscribe(rsp=>{
+        this.snackBar.open('Usuario eliminado correctamente!', '', {
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+          duration: 3000,
+          panelClass: ['custom-snackbar']
+        });
+        this.loadData();
+      })
+    }
   }
 
 }
