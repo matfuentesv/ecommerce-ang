@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ProductsResponse } from "../../../shared/models/products";
 import { User } from "../../../shared/models/user";
-
+import {endpoints} from "../../../environments/endpoints";
 /**
  * @description
  * Servicio para gestionar las solicitudes de datos relacionadas con productos y usuarios.
@@ -29,15 +29,14 @@ import { User } from "../../../shared/models/user";
 })
 export class DataService {
 
-  /**
-   * URL del archivo JSON que contiene los datos de productos.
-   */
-  private jsonProducttUrl = 'assets/json/data.json';
 
-  /**
-   * URL del archivo JSON que contiene los datos de usuarios.
-   */
-  private jsonUsersUrl = 'assets/json/users.json';
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer 2d4b8422-c7f4-4b1d-8b73-439bba7af688'
+    })
+  }
 
   /**
    * Constructor del servicio DataService.
@@ -52,7 +51,7 @@ export class DataService {
    * @returns Observable que emite los datos de productos.
    */
   getProducts(): Observable<ProductsResponse> {
-    return this.http.get<ProductsResponse>(this.jsonProducttUrl);
+    return this.http.get<ProductsResponse>(endpoints.products.path);
   }
 
   /**
@@ -61,6 +60,6 @@ export class DataService {
    * @returns Observable que emite los datos de usuarios.
    */
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.jsonUsersUrl);
+    return this.http.get<User[]>(endpoints.users.path);
   }
 }
