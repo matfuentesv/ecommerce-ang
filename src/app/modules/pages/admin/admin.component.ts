@@ -16,6 +16,7 @@ import {Ng2Rut2} from "../../../shared/directives/ng2-rut/ng2-rut.module";
 import {MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import Swal from 'sweetalert2';
+import {EditUserModalComponent} from "../../../shared/components/edit-user-modal/edit-user-modal.component";
 /**
  * @description
  * Este componente maneja la administración de productos y usuarios en la aplicación.
@@ -268,7 +269,14 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
     });
   }
 
-  editElement(user:User){}
+  editElement(object:User){
+    const dialogRef = this.dialog.open(EditUserModalComponent, { data: { users: this.user,user: object } });
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngZone.run(() => {
+        this.loadData();
+      });
+    });
+  }
   deleteElement(user: User) {
     Swal.fire({
       title: '¿Estás seguro?',
