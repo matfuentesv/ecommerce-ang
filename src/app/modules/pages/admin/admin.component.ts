@@ -255,11 +255,10 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
    */
   openModal() {
     const dialogRef = this.dialog.open(UserModalComponent, { data: { users: this.user } });
-
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.loadData();
-      }
+        this.ngZone.run(() => {
+          this.loadData();
+        });
     });
   }
 
