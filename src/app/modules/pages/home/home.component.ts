@@ -56,7 +56,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
    * Posición vertical del snack bar.
    */
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-
+  /**
+   * Variable para mostrar/ocular spinner.
+   */
   loading: boolean = true;
 
   /**
