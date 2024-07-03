@@ -1,5 +1,9 @@
+
 <div class="container">
   <h2 class="title text-center pt-1">{{title}}</h2>
+  <div *ngIf="loading" class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
   <div class="row game-list" *ngFor="let group of chunkedProducts">
     <div class="col-md-4" *ngFor="let product of group">
       <div class="card mb-4 product-card">

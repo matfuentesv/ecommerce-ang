@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { CurrencyPipe, NgClass, NgForOf } from "@angular/common";
+import {CurrencyPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import { Products } from "../../models/products";
 import { CartService } from "../../../core/services/cart/cart.service";
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
 import { CustomCurrencyPipe } from "../../pipes/customCurrency";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 /**
  * @description
@@ -24,7 +25,9 @@ import { CustomCurrencyPipe } from "../../pipes/customCurrency";
     CurrencyPipe,
     NgForOf,
     NgClass,
-    CustomCurrencyPipe
+    CustomCurrencyPipe,
+    MatProgressSpinner,
+    NgIf
   ],
   templateUrl: './grid.component.html',
   styleUrl: './grid.component.css'
@@ -55,6 +58,12 @@ export class GridComponent {
    */
   @Input()
   title: string = '';
+
+  /**
+   * Variable para mostrar/ocular spinner.
+   */
+  @Input()
+  loading: boolean = true;
 
   /**
    * Devuelve una lista de clases CSS para las estrellas de calificación.

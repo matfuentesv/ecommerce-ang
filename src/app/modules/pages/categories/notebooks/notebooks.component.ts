@@ -35,6 +35,12 @@ export class NotebooksComponent implements OnInit {
   chunkedProducts: any[][] = [];
 
   /**
+   * Variable para mostrar/ocular spinner.
+   */
+  loading: boolean = true;
+
+
+  /**
    * Constructor del componente NotebooksComponent.
    *
    * @param productService Servicio para obtener los datos de los productos.
@@ -45,9 +51,14 @@ export class NotebooksComponent implements OnInit {
    * Inicializa el componente y carga los productos de notebooks.
    */
   ngOnInit(): void {
+    this.loading = true;
     this.productService.getProducts().subscribe((product) => {
       this.products = product.notebooks;
       this.chunkedProducts = this.chunkArray(this.products, 3);
+      this.loading = false;
+    },error => {
+      console.error(error);
+      this.loading = false;
     });
   }
 

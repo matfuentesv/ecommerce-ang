@@ -7,6 +7,6 @@ export const endpoints = {
   products: {
     name: 'Products',
     description: 'Obtiene lista de productos',
-    path: 'https://firebasestorage.googleapis.com/v0/b/ecommerce-ang-8598e.appspot.com/o/data.json?alt=media&token=d23581ff-7949-4667-8f7b-07532eb98f9e'
+    path: 'https://firebasestorage.googleapis.com/v0/b/ecommerce-ang-8598e.appspot.com/o/products.json?alt=media&token=e7e6a18d-6cc0-4c29-bf48-a36e0e94675e'
   }
 }

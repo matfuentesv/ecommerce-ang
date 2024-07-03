@@ -33,6 +33,12 @@ export class CellPhonesComponent implements OnInit {
   chunkedProducts: any[][] = [];
 
   /**
+   * Variable para mostrar/ocular spinner.
+   */
+  loading: boolean = true;
+
+
+  /**
    * Constructor del componente CellPhonesComponent.
    *
    * @param productService Servicio para obtener los datos de los productos.
@@ -43,9 +49,14 @@ export class CellPhonesComponent implements OnInit {
    * Inicializa el componente y carga los productos de teléfonos celulares.
    */
   ngOnInit(): void {
+    this.loading = true;
     this.productService.getProducts().subscribe((product) => {
       this.products = product.cellPhones;
       this.chunkedProducts = this.chunkArray(this.products, 3);
+      this.loading = false;
+    },error => {
+      console.error(error);
+      this.loading = false;
     });
   }
 
