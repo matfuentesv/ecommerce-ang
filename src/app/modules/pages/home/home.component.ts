@@ -1,11 +1,12 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { DataService } from "../../../core/services/data/data.service";
 import { Products } from "../../../shared/models/products";
-import {CurrencyPipe, NgClass, NgForOf} from "@angular/common";
+import {CurrencyPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {CartService} from "../../../core/services/cart/cart.service";
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
 import {MatButton} from "@angular/material/button";
 import {CustomCurrencyPipe} from "../../../shared/pipes/customCurrency";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 declare var $: any;
 
@@ -28,7 +29,9 @@ declare var $: any;
     CurrencyPipe,
     NgForOf,
     MatButton,
-    CustomCurrencyPipe
+    CustomCurrencyPipe,
+    MatProgressSpinnerModule,
+    NgIf
   ],
   styleUrls: ['./home.component.css']
 })
@@ -54,6 +57,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
    */
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
+  loading: boolean = true;
+
   /**
    * Constructor del componente HomeComponent.
    *
@@ -69,9 +74,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
    * Inicializa el componente y carga los productos destacados.
    */
   ngOnInit(): void {
+    this.loading = true;
     this.dataService.getProducts().subscribe(x => {
       this.products = x.outstanding;
       this.chunkedProducts = this.chunk(this.products, 3);
+      this.loading = false;
+    },error => {
+      console.error(error);
+      this.loading = false;
     });
   }
 
