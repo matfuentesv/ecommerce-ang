@@ -19,38 +19,61 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <label for="lastName">Correo</label>
-        <input type="email" [ngClass]="{'input-error':validEmail}" id="email" class="form-control" formControlName="email" required>
-        <div *ngIf="accountForm.get('email')?.invalid && accountForm.get('email')?.touched">
-          <small class="error" *ngIf="accountForm.get('email')?.errors?.['required']">El correo es obligatorio.</small>
-          <small class="error" *ngIf="accountForm.get('email')?.errors?.['email']">El correo no es válido.</small>
+        <div class="form-group">
+          <label for="rut">Rut</label>
+          <input [ngClass]="{'input-error':validRut}" appFormatRut class="form-control" formControlName="rut" id="rut"
+                 required type="text">
+          <div *ngIf="accountForm.get('rut')?.invalid && accountForm.get('rut')?.touched">
+            <small *ngIf="accountForm.get('rut')?.errors?.['required']" class="error">El rut son obligatorios.</small>
+          </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label for="lastName">Celular</label>
-          <input type="text" [ngClass]="{'input-error':validPhone}" id="phone" class="form-control" formControlName="phone" required>
+          <label for="phone">Celular</label>
+          <input (keypress)='validateNumbers($event)' [ngClass]="{'input-error':validPhone}" class="form-control" formControlName="phone" id="phone"
+                 required type="text">
           <div *ngIf="accountForm.get('phone')?.invalid && accountForm.get('phone')?.touched">
-            <small class="error" *ngIf="accountForm.get('phone')?.errors?.['required']">El celular es obligatorio.</small>
-            <small class="error" *ngIf="accountForm.get('phone')?.errors?.['phone']">El celular no es válido.</small>
+            <small *ngIf="accountForm.get('phone')?.errors?.['required']" class="error">El celular es
+              obligatorio.</small>
+            <small *ngIf="accountForm.get('phone')?.errors?.['phone']" class="error">El celular no es válido.</small>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-12">
-      <div class="form-group">
-        <label for="phone">Dirección</label>
-        <input type="text" [ngClass]="{'input-error':validAddress}" id="address" class="form-control w-100" formControlName="address" required>
-        <div *ngIf="accountForm.get('address')?.invalid && accountForm.get('address')?.touched">
-          <small class="error" *ngIf="accountForm.get('address')?.errors?.['required']">La dirección es obligatorio.</small>
-          <small class="error" *ngIf="accountForm.get('address')?.errors?.['address']">La dirección  no es válido.</small>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="lastName">Correo</label>
+          <input [ngClass]="{'input-error':validEmail}" class="form-control" formControlName="email" id="email"
+                 required type="email">
+          <div *ngIf="accountForm.get('email')?.invalid && accountForm.get('email')?.touched">
+            <small *ngIf="accountForm.get('email')?.errors?.['required']" class="error">El correo es
+              obligatorio.</small>
+            <small *ngIf="accountForm.get('email')?.errors?.['email']" class="error">El correo no es válido.</small>
+          </div>
         </div>
       </div>
     </div>
+
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="form-group">
-          <div class="form-group">
+          <label for="address">Dirección</label>
+          <input [ngClass]="{'input-error':validAddress}" class="form-control w-100" formControlName="address" id="address"
+                 required type="text">
+          <div *ngIf="accountForm.get('address')?.invalid && accountForm.get('address')?.touched">
+            <small *ngIf="accountForm.get('address')?.errors?.['required']" class="error">La dirección es
+              obligatorio.</small>
+            <small *ngIf="accountForm.get('address')?.errors?.['address']" class="error">La dirección no es
+              válido.</small>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
             <label >Contraseña</label>
             <input type="password" [ngClass]="{'input-error':validPassword}" id="password" class="form-control" formControlName="password" required>
             <div *ngIf="accountForm.get('password')?.invalid && accountForm.get('password')?.touched">
@@ -62,19 +85,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="confirmPassword">Confirmar nueva contraseña</label>
-          <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPassword">
-          <div *ngIf="accountForm.get('confirmPassword')?.invalid && accountForm.get('confirmPassword')?.touched">
-          <small class="error" *ngIf="accountForm.get('confirmPassword')?.errors?.['required']">La contraseña es obligatoria.</small>
-          <small class="error" *ngIf="accountForm.get('confirmPassword')?.errors?.['pattern']">La contraseña debe tener al menos un número y una letra mayúscula.</small>
-          <small class="error" *ngIf="accountForm.get('confirmPassword')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</small>
-          <small class="error" *ngIf="accountForm.get('confirmPassword')?.errors?.['maxlength']">La contraseña no puede exceder los 18 caracteres.</small>
-        </div>
-        </div>
-      </div>
     </div>
-    <button type="submit" class="btn btn-primary w-50 text-center">Actualizar cuenta</button>
+    <button type="submit" class="btn btn-primary w-100 text-center">Actualizar cuenta</button>
   </form>
 </div>

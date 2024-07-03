@@ -2,7 +2,7 @@ export const endpoints = {
   users: {
     name: 'Users',
     description: 'Obtiene Lista de usuarios',
-    path: 'https://firebasestorage.googleapis.com/v0/b/ecommerce-ang-8598e.appspot.com/o/users.json?alt=media&token=729dd56b-dcd1-4321-8c41-b107eee00cdc'
+    path: 'https://firebasestorage.googleapis.com/v0/b/ecommerce-ang-8598e.appspot.com/o/users.json?alt=media&token=f501f4b9-16f7-4bbf-8b5f-fea932c3c8ef'
   },
   products: {
     name: 'Products',

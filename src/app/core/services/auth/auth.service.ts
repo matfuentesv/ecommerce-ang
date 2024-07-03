@@ -27,7 +27,7 @@ export class AuthService {
   private isLoggedIn = new BehaviorSubject<boolean>(false);
   authStatus$ = this.isLoggedIn.asObservable();
   private userNameSubject = new BehaviorSubject<string | null>(null);
-  userName$ = this.userNameSubject.asObservable();
+  public userName$ = this.userNameSubject.asObservable();
   private userRoleSubject = new BehaviorSubject<string | null>(null);
   userRole$ = this.userRoleSubject.asObservable();
   private users: User[] = [];
@@ -46,10 +46,11 @@ export class AuthService {
   /**
    * Carga la lista de usuarios desde el servicio de datos.
    */
-  private loadUsers() {
+   loadUsers() {
     this.dataService.getUsers().subscribe(users => {
       this.users = users;
     });
+    return this.users;
   }
 
   /**

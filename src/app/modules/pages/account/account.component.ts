@@ -10,7 +10,11 @@ import {
 import { AuthService } from "../../../core/services/auth/auth.service";
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
 import { NgClass, NgIf } from "@angular/common";
-
+import {User} from "../../../shared/models/user";
+import {DataService} from "../../../core/services/data/data.service";
+import {RutValidatorDirective} from "../../../shared/directives/ng2-rut/rut-validator.directive";
+import {Ng2Rut2} from "../../../shared/directives/ng2-rut/ng2-rut.module";
+import Swal from 'sweetalert2';
 /**
  * @description
  * Este componente maneja la actualización de la información de la cuenta del usuario.
@@ -28,7 +32,8 @@ import { NgClass, NgIf } from "@angular/common";
   imports: [
     ReactiveFormsModule,
     NgIf,
-    NgClass
+    NgClass,
+    Ng2Rut2
   ],
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
@@ -51,18 +56,32 @@ export class AccountComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   /**
+   * arreglo de usuarios.
+   */
+  users: User[]=[];
+
+  /**
+   * arreglo de usuarios.
+   */
+  objectUser: User | null | undefined;
+
+  /**
    * Constructor del componente AccountComponent.
    *
    * @param fb FormBuilder para crear formularios.
    * @param authService Servicio de autenticación.
    * @param snackBar MatSnackBar para notificaciones.
+   * @param dataService
    */
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private dataService: DataService) {
+
     this.accountForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+      rut: ['', [Validators.required, RutValidatorDirective.validate]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
       address: ['', Validators.required],
@@ -71,23 +90,26 @@ export class AccountComponent implements OnInit {
         Validators.pattern('^(?=.*[A-Z])(?=.*\\d).{6,18}$'),
         Validators.minLength(6),
         Validators.maxLength(18)
-      ]],
-      confirmPassword: ['', Validators.required]
-    }, { validators: this.passwordMatchValidator });
+      ]]
+    });
   }
 
   /**
    * Inicializa el componente y carga la información del usuario en el formulario.
    */
   ngOnInit(): void {
-    const user = this.authService.getUser();
-    if (user) {
+    this.objectUser = this.authService.getUser();
+    this.users = this.authService.loadUsers();
+
+    if (this.objectUser) {
       this.accountForm.patchValue({
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        phone: user.phone,
-        address: user.address
+        firstName: this.objectUser.firstName,
+        lastName: this.objectUser.lastName,
+        rut: this.objectUser.rut,
+        email: this.objectUser.email,
+        phone: this.objectUser.phone,
+        address: this.objectUser.address,
+        password: this.objectUser.password
       });
     }
   }
@@ -105,6 +127,14 @@ export class AccountComponent implements OnInit {
   get validLastName(){
     return this.accountForm.get('lastName')?.invalid && this.accountForm.get('lastName')?.touched;
   }
+
+  /**
+   * Valida si el campo apellido es válido.
+   */
+  get validRut(){
+    return this.accountForm.get('rut')?.invalid && this.accountForm.get('rut')?.touched;
+  }
+
 
   /**
    * Valida si el campo email es válido.
@@ -153,16 +183,47 @@ export class AccountComponent implements OnInit {
    * Maneja el envío del formulario de actualización de cuenta.
    */
   onSubmit(): void {
-    if (this.accountForm.valid) {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¡No podrás revertir esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, actualizar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (this.accountForm.valid) {
 
-      this.snackBar.open('Información usuario actualizada con exito!', '', {
-        horizontalPosition: this.horizontalPosition,
-        verticalPosition: this.verticalPosition,
-        duration: 3000,
-        panelClass: ['custom-snackbar']
-      });
+          const index = this.users.findIndex((elemento: any) => elemento.id === this.objectUser?.id);
 
-    }
+          if (index !== -1) {
+            this.users[index].firstName = this.accountForm.get('firstName')?.value;
+            this.users[index].lastName = this.accountForm.get('lastName')?.value;
+            this.users[index].rut = this.accountForm.get('rut')?.value;
+            this.users[index].email = this.accountForm.get('email')?.value;
+            this.users[index].phone = this.accountForm.get('phone')?.value;
+            this.users[index].address = this.accountForm.get('address')?.value;
+            this.users[index].password = this.accountForm.get('password')?.value;
+            this.users[index].roles = this.objectUser?.roles ?? [];
+            this.dataService.addUser(this.users).subscribe(rsp => {});
+            if (this.authService.login(this.users[index].email, this.users[index].password)) {
+              this.snackBar.open('Usuario actualizado correctamente!', '', {
+                horizontalPosition: this.horizontalPosition,
+                verticalPosition: this.verticalPosition,
+                duration: 3000,
+                panelClass: ['custom-snackbar']
+              });
+            }
+          }
+        }
+      }
+    });
   }
+
+  validateNumbers(event: { charCode: number; }){
+    return (event.charCode >= 48 && event.charCode <= 57) || event.charCode === 107;
+  }
+
 
 }
