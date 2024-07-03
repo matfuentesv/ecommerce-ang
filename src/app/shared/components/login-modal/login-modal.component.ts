@@ -45,8 +45,8 @@ export class LoginModalComponent {
               private authService: AuthService) {
 
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      email: ['jane.smith@example.com', [Validators.required, Validators.email]],
+      password: ['password456', Validators.required]
     });
   }
 
