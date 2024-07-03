@@ -12,6 +12,7 @@ import { MatSpinner } from "@angular/material/progress-spinner";
 import { MatDialog } from "@angular/material/dialog";
 import { UserModalComponent } from "../../../shared/components/user-modal/user-modal.component";
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
+import {Ng2Rut2} from "../../../shared/directives/ng2-rut/ng2-rut.module";
 
 /**
  * @description
@@ -43,7 +44,8 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
     MatHeaderRowDef,
     MatPaginator,
     MatSpinner,
-    NgClass
+    NgClass,
+    Ng2Rut2
   ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'

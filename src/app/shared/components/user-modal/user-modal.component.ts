@@ -13,6 +13,7 @@ import {DataService} from "../../../core/services/data/data.service";
 import {User} from "../../models/user";
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
 import {NgIf} from "@angular/common";
+import {Ng2Rut2, RutValidatorDirective} from "../../directives/ng2-rut/ng2-rut.module";
 
 /**
  * @description
@@ -43,7 +44,8 @@ import {NgIf} from "@angular/common";
     MatRadioButton,
     MatDatepickerInput,
     MatIcon,
-    NgIf
+    NgIf,
+    Ng2Rut2
   ],
   templateUrl: './user-modal.component.html',
   styleUrl: './user-modal.component.css'
@@ -83,7 +85,7 @@ export class UserModalComponent implements OnInit {
     this.userForm = this.fb.group({
       firstName: ['Carlos', Validators.required],
       lastName: ['Fuentes', Validators.required],
-      rut: ['6413889-8', Validators.required],
+      rut: ['', [Validators.required, RutValidatorDirective.validate]],
       email: ['carlos@gmail.com', [Validators.required, Validators.email]],
       phone: ['1212121', Validators.required],
       address: ['xxxx', Validators.required],
@@ -136,4 +138,10 @@ export class UserModalComponent implements OnInit {
       })
     }
   }
+
+  validateNumbers(event: { charCode: number; }){
+    return (event.charCode >= 48 && event.charCode <= 57) || event.charCode === 107;
+  }
+
+
 }
