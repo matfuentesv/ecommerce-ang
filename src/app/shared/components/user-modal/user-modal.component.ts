@@ -83,13 +83,13 @@ export class UserModalComponent implements OnInit {
    */
   ngOnInit(): void {
     this.userForm = this.fb.group({
-      firstName: ['Carlos', Validators.required],
-      lastName: ['Fuentes', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       rut: ['', [Validators.required, RutValidatorDirective.validate]],
-      email: ['carlos@gmail.com', [Validators.required, Validators.email]],
-      phone: ['1212121', Validators.required],
-      address: ['xxxx', Validators.required],
-      password: ['M4t14s01', [
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
+      address: ['', Validators.required],
+      password: ['', [
         Validators.required,
         Validators.pattern('^(?=.*[A-Z])(?=.*\\d).{6,18}$'),
         Validators.minLength(6),
