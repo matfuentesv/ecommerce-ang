@@ -12,6 +12,7 @@ import { MatIcon } from "@angular/material/icon";
 import {DataService} from "../../../core/services/data/data.service";
 import {User} from "../../models/user";
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
+import {NgIf} from "@angular/common";
 
 /**
  * @description
@@ -41,7 +42,8 @@ import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition}
     MatRadioGroup,
     MatRadioButton,
     MatDatepickerInput,
-    MatIcon
+    MatIcon,
+    NgIf
   ],
   templateUrl: './user-modal.component.html',
   styleUrl: './user-modal.component.css'
@@ -94,6 +96,8 @@ export class UserModalComponent implements OnInit {
       roles: ['', Validators.required]
     });
   }
+
+
 
   /**
    * Cierra el modal de usuario.

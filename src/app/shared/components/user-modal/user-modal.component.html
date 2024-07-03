@@ -12,6 +12,9 @@
         <mat-form-field appearance="fill" class="w-100">
           <mat-label>Nombre</mat-label>
           <input matInput formControlName="firstName" required>
+          <mat-error *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched">
+            <small class="error" *ngIf="userForm.get('firstName')?.errors?.['required']">El nombre es obligatorio.</small>
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="col-md-6">
