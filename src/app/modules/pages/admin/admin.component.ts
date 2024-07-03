@@ -90,6 +90,11 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
    */
   isLoadingResults = true;
 
+  /**
+   * varibale que contiene un arreglo de usuarios.
+   */
+  user : User[]=[];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   /**
@@ -181,8 +186,9 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
    */
   private loadData() {
     this.userService.getUsers().subscribe(users => {
-      this.dataSource.data = users;
-      this.resultsLength = users.length;
+      this.user = users;
+      this.dataSource.data = this.user;
+      this.resultsLength = this.user.length;
       this.isLoadingResults = false;
       this.cdr.detectChanges();
     });
@@ -248,7 +254,13 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
    * Abre el modal de usuario.
    */
   openModal() {
-    this.dialog.open(UserModalComponent);
+    const dialogRef = this.dialog.open(UserModalComponent, { data: { users: this.user } });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadData();
+      }
+    });
   }
 
 }

@@ -63,7 +63,7 @@ export class DataService {
     return this.http.get<User[]>(endpoints.users.path);
   }
 
-  addUser(user:User) {
+  addUser(user:User[]) {
     console.log(user);
     return  this.http.post(endpoints.users.path,user,this.httpOptions);
   }
