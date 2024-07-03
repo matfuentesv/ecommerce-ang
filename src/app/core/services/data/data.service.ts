@@ -62,4 +62,9 @@ export class DataService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(endpoints.users.path);
   }
+
+  addUser(user:User) {
+    console.log(user);
+    return  this.http.post(endpoints.users.path,user,this.httpOptions);
+  }
 }

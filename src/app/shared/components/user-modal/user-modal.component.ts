@@ -9,6 +9,8 @@ import { MatGridList, MatGridTile } from "@angular/material/grid-list";
 import { MatDatepicker, MatDatepickerInput, MatDatepickerToggle } from "@angular/material/datepicker";
 import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
 import { MatIcon } from "@angular/material/icon";
+import {DataService} from "../../../core/services/data/data.service";
+import {User} from "../../models/user";
 
 /**
  * @description
@@ -50,7 +52,9 @@ export class UserModalComponent implements OnInit {
    */
   userForm!: FormGroup;
 
-  constructor(private dialog: MatDialog, private fb: FormBuilder) {}
+  constructor(private dialog: MatDialog,
+              private fb: FormBuilder,
+              private dataService: DataService) {}
 
   /**
    * Inicializa el componente y configura el formulario del usuario.
@@ -79,6 +83,20 @@ export class UserModalComponent implements OnInit {
    */
   onSubmit() {
     if (this.userForm.valid) {
+      const user: User = {
+        firstName: this.userForm.get('firstName')?.value,
+        lastName: this.userForm.get('lastName')?.value,
+        rut:'6006939-5',
+        email: this.userForm.get('email')?.value,
+        phone: this.userForm.get('phone')?.value,
+        address: this.userForm.get('address')?.value,
+        password: this.userForm.get('password')?.value,
+        confirmPassword: this.userForm.get('confirmPassword')?.value,
+        roles: [this.userForm.get('roles')?.value]
+      };
+      this.dataService.addUser(user).subscribe(rsp =>{
+        console.log('usuario creado');
+      })
       this.dialog.closeAll();
     }
   }

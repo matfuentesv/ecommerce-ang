@@ -73,7 +73,7 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
   /**
    * Columnas que se muestran en la tabla de usuarios.
    */
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'phone', 'address', 'roles'];
+  displayedColumns: string[] = ['firstName', 'lastName','rut', 'email', 'phone', 'address', 'roles'];
 
   /**
    * Fuente de datos para la tabla de usuarios.
