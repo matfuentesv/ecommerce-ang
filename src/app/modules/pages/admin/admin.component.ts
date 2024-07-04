@@ -27,7 +27,7 @@ import { MatPaginator } from "@angular/material/paginator";
 import { User } from "../../../shared/models/user";
 
 import { catchError, map, merge, of, startWith, switchMap } from "rxjs";
-import { MatSpinner } from "@angular/material/progress-spinner";
+import {MatProgressSpinner, MatSpinner} from "@angular/material/progress-spinner";
 import { MatDialog } from "@angular/material/dialog";
 import { UserModalComponent } from "../../../shared/components/user-modal/user-modal.component";
 import {
@@ -36,11 +36,14 @@ import {
   MatSnackBarVerticalPosition
 } from "@angular/material/snack-bar";
 import { Ng2Rut2 } from "../../../shared/directives/ng2-rut/ng2-rut.module";
-import { MatIconButton } from "@angular/material/button";
+import {MatButton, MatIconButton} from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import Swal from 'sweetalert2';
 import { EditUserModalComponent } from "../../../shared/components/edit-user-modal/edit-user-modal.component";
 import {Products} from "../../../shared/models/products";
+import {MatListItem, MatNavList} from "@angular/material/list";
+import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
+import {CustomCurrencyPipe} from "../../../shared/pipes/customCurrency";
 
 interface ProductResponse {
   notebooks: Products[];
@@ -70,7 +73,15 @@ interface ProductResponse {
     NgClass,
     Ng2Rut2,
     MatIconButton,
-    MatIcon
+    MatIcon,
+    MatListItem,
+    MatButton,
+    MatNavList,
+    MatSidenavContent,
+    MatSidenavContainer,
+    MatSidenav,
+    CustomCurrencyPipe,
+    MatProgressSpinner
   ],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
@@ -97,6 +108,11 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
   isLoadingResults = true;
 
   user: User[] = [];
+
+  /**
+   * Variable para mostrar/ocular spinner.
+   */
+  loading: boolean = true;
 
   @ViewChild('userPaginator') userPaginator!: MatPaginator;
   @ViewChild('productPaginator') productPaginator!: MatPaginator;
@@ -185,16 +201,22 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
 
   private loadData() {
+    this.loading = true;
     this.userService.getUsers().subscribe(users => {
       this.user = users;
       this.dataSource.data = this.user;
       this.resultsLength = this.user.length;
       this.isLoadingResults = false;
       this.cdr.detectChanges();
+      this.loading = false;
+    },error => {
+      console.error(error);
+      this.loading = false;
     });
   }
 
   private loadProducts() {
+    this.loading = true;
     this.userService.getProducts().subscribe((products: ProductResponse) => {
       const allProducts = [
         ...products.notebooks,
@@ -204,6 +226,10 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
       ];
       this.productDataSource.data = allProducts;
       this.productResultsLength = allProducts.length;
+      this.loading = false;
+    },error => {
+      console.error(error);
+      this.loading = false;
     });
   }
 
