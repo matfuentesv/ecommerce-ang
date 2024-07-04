@@ -93,7 +93,7 @@ export class EditUserModalComponent  implements OnInit{
         Validators.minLength(6),
         Validators.maxLength(18)
       ]],
-      roles: [this.objectUser.roles, Validators.required]
+      roles: [this.objectUser.roles[0], Validators.required]
     });
   }
 
@@ -123,7 +123,7 @@ export class EditUserModalComponent  implements OnInit{
         this.users[index].phone = this.userForm.get('phone')?.value;
         this.users[index].address = this.userForm.get('address')?.value;
         this.users[index].password = this.userForm.get('password')?.value;
-        this.users[index].roles = this.userForm.get('roles')?.value;
+        this.users[index].roles = [this.userForm.get('roles')?.value];
 
         this.dataService.addUser(this.users).subscribe(rsp => {
           this.snackBar.open('Usuario actualizado correctamente!', '', {
