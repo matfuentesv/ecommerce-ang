@@ -13,46 +13,62 @@
   <div class="main-content">
     <div *ngIf="currentSection === 'products'">
       <h3>Gestionar Productos</h3>
-      <form [formGroup]="productForm" (ngSubmit)="onSubmitProduct()">
-        <div class="form-group">
-          <label for="productName">Nombre del Producto</label>
-          <input [ngClass]="{'input-error':validProductName}" type="text" class="form-control" id="productName" placeholder="Nombre del Producto" formControlName="productName" required>
-          <div *ngIf="productForm.get('productName')?.invalid && productForm.get('productName')?.touched">
-            <small class="error" *ngIf="productForm.get('productName')?.errors?.['required']">El nombre es obligatorio.</small>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="description">Descripción</label>
-          <textarea [ngClass]="{'input-error':validProductDescription}" class="form-control" id="description" rows="3" placeholder="Descripción" formControlName="description" required></textarea>
-          <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched">
-            <small class="error" *ngIf="productForm.get('description')?.errors?.['required']">La descripción es obligatorio.</small>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="price">Precio</label>
-          <input [ngClass]="{'input-error':validProductPrice}" type="number" class="form-control" id="price" placeholder="Precio" formControlName="price" required>
-          <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
-            <small class="error" *ngIf="productForm.get('price')?.errors?.['required']">El precio obligatorio.</small>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="category">Categoría</label>
-          <select [ngClass]="{'input-error':validProductCategory}" class="form-control" id="category" formControlName="category" required>
-            <option>Computadoras</option>
-            <option>Celulares</option>
-            <option>Aire acondicionado</option>
-            <option>Cafeteras eléctricas</option>
-          </select>
-          <div *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched">
-            <small class="error" *ngIf="productForm.get('category')?.errors?.['required']">La categoria es obligatorio.</small>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="image">Imagen</label>
-          <input type="file" class="form-control-file" id="image" formControlName="image">
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Agregar Producto</button>
-      </form>
+      <div class="right-align-button">
+        <button type="button" (click)="openModal()" class="btn btn-primary">Agregar</button>
+      </div>
+      <table mat-table [dataSource]="productDataSource" class="mat-elevation-z8 mat-table">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let product"> {{product.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Precio </th>
+          <td mat-cell *matCellDef="let product"> {{product.price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="discount">
+          <th mat-header-cell *matHeaderCellDef> Descuento </th>
+          <td mat-cell *matCellDef="let product"> {{product.discount}}% </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Descripción </th>
+          <td mat-cell *matCellDef="let product"> {{product.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef> Categoría </th>
+          <td mat-cell *matCellDef="let product"> {{product.category}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+          <td mat-cell *matCellDef="let product"> {{product.quantity}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef> Editar </th>
+          <td mat-cell *matCellDef="let product">
+            <button mat-icon-button (click)="editElement(product)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+          <td mat-cell *matCellDef="let product">
+            <button mat-icon-button (click)="deleteElement(product)">
+              <mat-icon color="warn">delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="productDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: productDisplayedColumns;"></tr>
+      </table>
+      <mat-paginator #productPaginator [length]="productResultsLength" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" aria-label="Select page"></mat-paginator>
     </div>
     <div *ngIf="currentSection === 'users'">
       <h3>Gestionar Usuarios</h3>
@@ -97,8 +113,8 @@
 
         <ng-container matColumnDef="edit">
           <th mat-header-cell *matHeaderCellDef> Editar </th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-icon-button (click)="editElement(element)">
+          <td mat-cell *matCellDef="let user">
+            <button mat-icon-button (click)="editElement(user)">
               <mat-icon>edit</mat-icon>
             </button>
           </td>
@@ -106,8 +122,8 @@
 
         <ng-container matColumnDef="delete">
           <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-icon-button (click)="deleteElement(element)">
+          <td mat-cell *matCellDef="let user">
+            <button mat-icon-button (click)="deleteElement(user)">
               <mat-icon color="warn">delete</mat-icon>
             </button>
           </td>
@@ -116,7 +132,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      <mat-paginator [length]="resultsLength" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" aria-label="Select page"></mat-paginator>
+      <mat-paginator #userPaginator [length]="resultsLength" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" aria-label="Select page"></mat-paginator>
     </div>
   </div>
 </div>

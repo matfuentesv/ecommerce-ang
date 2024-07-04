@@ -1,34 +1,54 @@
-import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  NgZone,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { NgClass, NgIf } from "@angular/common";
 import { DataService } from "../../../core/services/data/data.service";
 import {
-  MatCell, MatCellDef, MatColumnDef, MatHeaderCell, MatHeaderCellDef, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable, MatTableDataSource,
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource
 } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
 import { User } from "../../../shared/models/user";
+
 import { catchError, map, merge, of, startWith, switchMap } from "rxjs";
 import { MatSpinner } from "@angular/material/progress-spinner";
 import { MatDialog } from "@angular/material/dialog";
 import { UserModalComponent } from "../../../shared/components/user-modal/user-modal.component";
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
-import {Ng2Rut2} from "../../../shared/directives/ng2-rut/ng2-rut.module";
-import {MatIconButton} from "@angular/material/button";
-import {MatIcon} from "@angular/material/icon";
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition
+} from "@angular/material/snack-bar";
+import { Ng2Rut2 } from "../../../shared/directives/ng2-rut/ng2-rut.module";
+import { MatIconButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
 import Swal from 'sweetalert2';
-import {EditUserModalComponent} from "../../../shared/components/edit-user-modal/edit-user-modal.component";
-/**
- * @description
- * Este componente maneja la administración de productos y usuarios en la aplicación.
- * Permite agregar nuevos productos, listar usuarios y gestionar sus roles.
- *
- * @usageNotes
- * Este componente debe ser utilizado dentro del módulo de administración de la aplicación.
- *
- *
- * @example
- * <app-admin></app-admin>
- */
+import { EditUserModalComponent } from "../../../shared/components/edit-user-modal/edit-user-modal.component";
+import {Products} from "../../../shared/models/products";
+
+interface ProductResponse {
+  notebooks: Products[];
+  cellPhones: Products[];
+  coffeeMakers: Products[];
+  airConditioning: Products[];
+}
+
 @Component({
   selector: 'app-admin',
   standalone: true,
@@ -53,74 +73,42 @@ import {EditUserModalComponent} from "../../../shared/components/edit-user-modal
     MatIcon
   ],
   templateUrl: './admin.component.html',
-  styleUrl: './admin.component.css'
+  styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
-  /**
-   * Sección actual que se muestra en la interfaz de administración.
-   */
   currentSection: string = 'products';
 
-  /**
-   * Formulario para agregar un nuevo producto.
-   */
   productForm: FormGroup;
 
-  /**
-   * Posición horizontal de las notificaciones.
-   */
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
 
-  /**
-   * Posición vertical de las notificaciones.
-   */
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  /**
-   * Columnas que se muestran en la tabla de usuarios.
-   */
-  displayedColumns: string[] = ['firstName', 'lastName','rut', 'email', 'phone', 'address', 'roles','edit','delete'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'rut', 'email', 'phone', 'address', 'roles', 'edit', 'delete'];
+  productDisplayedColumns: string[] = ['name', 'price', 'discount', 'description', 'category', 'quantity', 'edit', 'delete'];
 
-  /**
-   * Fuente de datos para la tabla de usuarios.
-   */
   dataSource = new MatTableDataSource<User>();
+  productDataSource = new MatTableDataSource<Products>();
 
-  /**
-   * Número total de resultados en la tabla.
-   */
   resultsLength = 0;
+  productResultsLength = 0;
 
-  /**
-   * Indicador de carga de resultados.
-   */
   isLoadingResults = true;
 
-  /**
-   * varibale que contiene un arreglo de usuarios.
-   */
-  user : User[]=[];
+  user: User[] = [];
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('userPaginator') userPaginator!: MatPaginator;
+  @ViewChild('productPaginator') productPaginator!: MatPaginator;
 
-  /**
-   * Constructor del componente AdminComponent.
-   *
-   * @param fb FormBuilder para crear formularios.
-   * @param userService Servicio de datos para usuarios.
-   * @param cdr ChangeDetectorRef para detectar cambios.
-   * @param ngZone NgZone para manejar cambios de zona.
-   * @param dialog MatDialog para manejar modales.
-   * @param snackBar MatSnackBar para notificaciones.
-   */
-  constructor(private fb: FormBuilder,
-              private userService: DataService,
-              private cdr: ChangeDetectorRef,
-              private ngZone: NgZone,
-              private dialog: MatDialog,
-              private snackBar: MatSnackBar) {
-
+  constructor(
+    private fb: FormBuilder,
+    private userService: DataService,
+    private cdr: ChangeDetectorRef,
+    private ngZone: NgZone,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {
     this.productForm = this.fb.group({
       productName: ['', Validators.required],
       description: ['', Validators.required],
@@ -130,67 +118,72 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
     });
   }
 
-  /**
-   * Inicializa el componente y carga los datos iniciales.
-   */
   ngOnInit() {
     this.loadData();
+    this.loadProducts();
   }
 
-  /**
-   * Método llamado después de que la vista se ha inicializado.
-   * Configura el paginador para la tabla de usuarios.
-   */
   ngAfterViewInit() {
     setTimeout(() => {
       this.initializePaginator();
     });
   }
 
-  /**
-   * Método llamado después de que la vista se ha verificado.
-   * Configura el paginador para la tabla de usuarios.
-   */
   ngAfterViewChecked() {
     this.initializePaginator();
   }
 
-  /**
-   * Inicializa el paginador para la tabla de usuarios.
-   */
   private initializePaginator() {
-    if (this.paginator && !this.dataSource.paginator) {
+    if (this.userPaginator && !this.dataSource.paginator) {
       this.ngZone.runOutsideAngular(() => {
-        this.dataSource.paginator = this.paginator;
+        this.dataSource.paginator = this.userPaginator;
+        this.setupPagination(this.userPaginator, 'users');
+      });
+    }
 
-        merge(this.paginator.page)
-          .pipe(
-            startWith({}),
-            switchMap(() => {
-              this.isLoadingResults = true;
-              return this.userService.getUsers().pipe(
-                catchError(() => of([]))
-              );
-            }),
-            map(data => {
-              this.isLoadingResults = false;
-              this.resultsLength = data.length;
-              return data;
-            })
-          )
-          .subscribe(data => {
-            this.ngZone.run(() => {
-              this.dataSource.data = data;
-              this.cdr.detectChanges();
-            });
-          });
+    if (this.productPaginator && !this.productDataSource.paginator) {
+      this.ngZone.runOutsideAngular(() => {
+        this.productDataSource.paginator = this.productPaginator;
+        this.setupPagination(this.productPaginator, 'products');
       });
     }
   }
 
-  /**
-   * Carga los datos de usuarios.
-   */
+  private setupPagination(paginator: MatPaginator, section: string) {
+    merge(paginator.page)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          return section === 'users'
+            ? this.userService.getUsers().pipe(catchError(() => of([] as User[])))
+            : this.userService.getProducts().pipe(catchError(() => of({ notebooks: [], cellPhones: [], coffeeMakers: [], airConditioning: [] } as ProductResponse)));
+        }),
+        map(data => {
+          this.isLoadingResults = false;
+          if (section === 'users') {
+            return data;
+          } else {
+            const products = data as ProductResponse;
+            return [...products.notebooks, ...products.cellPhones, ...products.coffeeMakers, ...products.airConditioning];
+          }
+        })
+      )
+      .subscribe(data => {
+        this.ngZone.run(() => {
+          if (section === 'users') {
+            this.dataSource.data = data as User[];
+            this.resultsLength = (data as User[]).length;
+          } else {
+            this.productDataSource.data = data as Products[];
+            this.productResultsLength = (data as Products[]).length;
+          }
+          this.cdr.detectChanges();
+        });
+      });
+  }
+
+
   private loadData() {
     this.userService.getUsers().subscribe(users => {
       this.user = users;
@@ -201,24 +194,28 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
     });
   }
 
-  /**
-   * Muestra una sección específica en la interfaz de administración.
-   *
-   * @param event Evento del click.
-   * @param section Sección a mostrar.
-   */
+  private loadProducts() {
+    this.userService.getProducts().subscribe((products: ProductResponse) => {
+      const allProducts = [
+        ...products.notebooks,
+        ...products.cellPhones,
+        ...products.coffeeMakers,
+        ...products.airConditioning
+      ];
+      this.productDataSource.data = allProducts;
+      this.productResultsLength = allProducts.length;
+    });
+  }
+
   showSection(event: Event, section: string): void {
     event.preventDefault();
     this.currentSection = section;
   }
 
-  /**
-   * Maneja el envío del formulario de producto.
-   */
   onSubmitProduct(): void {
     if (this.productForm.valid) {
       console.log(this.productForm.value);
-      this.snackBar.open('Producto agregado con exito!', '', {
+      this.snackBar.open('Producto agregado con éxito!', '', {
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
         duration: 3000,
@@ -229,54 +226,40 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
     }
   }
 
-  /**
-   * Verifica si el nombre del producto es válido.
-   */
   get validProductName() {
     return this.productForm.get('productName')?.invalid && this.productForm.get('productName')?.touched;
   }
 
-  /**
-   * Verifica si la descripción del producto es válida.
-   */
   get validProductDescription() {
     return this.productForm.get('description')?.invalid && this.productForm.get('description')?.touched;
   }
 
-  /**
-   * Verifica si el precio del producto es válido.
-   */
   get validProductPrice() {
     return this.productForm.get('price')?.invalid && this.productForm.get('price')?.touched;
   }
 
-  /**
-   * Verifica si la categoría del producto es válida.
-   */
   get validProductCategory() {
     return this.productForm.get('category')?.invalid && this.productForm.get('category')?.touched;
   }
 
-  /**
-   * Abre el modal de usuario.
-   */
   openModal() {
     const dialogRef = this.dialog.open(UserModalComponent, { data: { users: this.user } });
-    dialogRef.afterClosed().subscribe(result => {
-        this.ngZone.run(() => {
-          this.loadData();
-        });
-    });
-  }
-
-  editElement(object:User){
-    const dialogRef = this.dialog.open(EditUserModalComponent, { data: { users: this.user,user: object },disableClose:true });
     dialogRef.afterClosed().subscribe(result => {
       this.ngZone.run(() => {
         this.loadData();
       });
     });
   }
+
+  editElement(object: User) {
+    const dialogRef = this.dialog.open(EditUserModalComponent, { data: { users: this.user, user: object }, disableClose: true });
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngZone.run(() => {
+        this.loadData();
+      });
+    });
+  }
+
   deleteElement(user: User) {
     Swal.fire({
       title: '¿Estás seguro?',
@@ -305,5 +288,4 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
       }
     });
   }
-
 }
