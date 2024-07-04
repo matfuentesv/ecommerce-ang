@@ -14,6 +14,7 @@ import {AuthService} from "../../../core/services/auth/auth.service";
 import {User} from "../../../shared/models/user";
 import {NgClass, NgIf} from "@angular/common";
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
+import {DataService} from "../../../core/services/data/data.service";
 
 /**
  * @description
@@ -54,6 +55,16 @@ export class RegisterComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   /**
+   * arreglo de usuarios.
+   */
+  objectUser: User | null | undefined;
+
+  /**
+   * arreglo de usuarios.
+   */
+  users: User[] =[];
+
+  /**
    * Constructor del componente RegisterComponent.
    *
    * @param fb FormBuilder para construir el formulario de registro.
@@ -61,17 +72,21 @@ export class RegisterComponent implements OnInit {
    * @param router Router para navegación.
    * @param dialog MatDialog para modales.
    * @param snackBar MatSnackBar para mostrar mensajes.
+   * @param dataService
    */
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private router: Router,
               private dialog: MatDialog,
-              private snackBar: MatSnackBar) {}
+              private snackBar: MatSnackBar,
+              private dataService: DataService) {}
 
   /**
    * Inicializa el componente y configura el formulario de registro.
    */
   ngOnInit(): void {
+    this.users = this.authService.loadUsers();
+    this.objectUser = this.authService.getUser();
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -141,29 +156,65 @@ export class RegisterComponent implements OnInit {
   /**
    * Maneja el envío del formulario de registro.
    */
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.registerForm.valid) {
-      // Lógica para manejar el registro
       console.log(this.registerForm.value);
-      const user: User = {
-        ...this.registerForm.value,
-        roles: ['customer']
+
+      const newUser: User = {
+        id: this.users.length > 0 ? Math.max(...this.users.map((p: any) => p.id)) + 1 : 1,
+        firstName: this.registerForm.get('firstName')?.value,
+        lastName: this.registerForm.get('lastName')?.value,
+        rut: this.registerForm.get('rut')?.value,
+        email: this.registerForm.get('email')?.value,
+        phone: this.registerForm.get('phone')?.value,
+        address: this.registerForm.get('address')?.value,
+        password: this.registerForm.get('password')?.value,
+        roles: ["admin"]
       };
-      console.log(user);
-      this.authService.setUser(user);
-      if (this.authService.login(user.email, user.password)) {
-        this.snackBar.open('Usuario creado con exito!', '', {
+
+      try {
+        this.users.push(newUser);
+        await this.dataService.addUser(this.users).toPromise();
+
+        // Volver a cargar los usuarios después de agregar el nuevo usuario
+        await this.loadUsers();
+
+        // Validar usuario con la lista actualizada de usuarios
+        const user = this.users.find(u => u.email === newUser.email && u.password === newUser.password);
+        if (user) {
+          this.authService.isLoggedIn.next(true);
+          this.authService.userNameSubject.next(user.firstName);
+          this.authService.userRoleSubject.next(user.roles.includes('admin') ? 'admin' : 'customer');
+          this.authService.currentUser = user;
+          this.snackBar.open('Usuario creado correctamente!', '', {
+            horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
+            duration: 3000,
+            panelClass: ['custom-snackbar']
+          });
+          this.router.navigate(['/home']);
+        } else {
+          throw new Error('Error en el inicio de sesión');
+        }
+      } catch (error) {
+        this.snackBar.open('Error en el registro o login', 'Cerrar', {
+          duration: 3000,
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
-          duration: 3000,
-          panelClass: ['custom-snackbar']
         });
-        this.router.navigate(['/home']);
       }
     } else {
       Object.values(this.registerForm.controls).forEach(control => {
         control.markAsTouched();
       });
+    }
+  }
+
+  async loadUsers() {
+    try {
+      await this.dataService.getUsers().toPromise();
+    } catch (error) {
+      console.error('Error loading users:', error);
     }
   }
 

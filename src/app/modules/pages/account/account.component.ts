@@ -191,7 +191,7 @@ export class AccountComponent implements OnInit {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Sí, actualizar!'
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         if (this.accountForm.valid) {
 
@@ -206,17 +206,20 @@ export class AccountComponent implements OnInit {
             this.users[index].address = this.accountForm.get('address')?.value;
             this.users[index].password = this.accountForm.get('password')?.value;
             this.users[index].roles = this.objectUser?.roles ?? [];
-            this.dataService.addUser(this.users).subscribe(rsp => {});
-            if (this.authService.login(this.users[index].email, this.users[index].password)) {
+            this.dataService.addUser(this.users).subscribe(rsp => {
+              this.authService.isLoggedIn.next(true);
+              this.authService.userNameSubject.next(this.users[index].firstName);
+              this.authService.userRoleSubject.next(this.users[index].roles.includes('admin') ? 'admin' : 'customer');
+              this.authService.currentUser = this.users[index];
               this.snackBar.open('Usuario actualizado correctamente!', '', {
                 horizontalPosition: this.horizontalPosition,
                 verticalPosition: this.verticalPosition,
                 duration: 3000,
                 panelClass: ['custom-snackbar']
               });
+            });
             }
           }
-        }
       }
     });
   }
@@ -224,6 +227,14 @@ export class AccountComponent implements OnInit {
   validateNumbers(event: { charCode: number; }){
     return (event.charCode >= 48 && event.charCode <= 57) || event.charCode === 107;
   }
+  async loadUsers() {
+    try {
+      await this.dataService.getUsers().toPromise();
+    } catch (error) {
+      console.error('Error loading users:', error);
+    }
+  }
+
 
 
 }

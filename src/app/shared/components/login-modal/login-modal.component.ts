@@ -46,7 +46,7 @@ export class LoginModalComponent {
 
     this.loginForm = this.fb.group({
       email: ['jane.smith@example.com', [Validators.required, Validators.email]],
-      password: ['password456', Validators.required]
+      password: ['Password456', Validators.required]
     });
   }
 

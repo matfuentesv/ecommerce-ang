@@ -24,14 +24,14 @@ import { BehaviorSubject } from "rxjs";
 })
 export class AuthService {
 
-  private isLoggedIn = new BehaviorSubject<boolean>(false);
+  public isLoggedIn = new BehaviorSubject<boolean>(false);
   authStatus$ = this.isLoggedIn.asObservable();
-  private userNameSubject = new BehaviorSubject<string | null>(null);
+  public userNameSubject = new BehaviorSubject<string | null>(null);
   public userName$ = this.userNameSubject.asObservable();
-  private userRoleSubject = new BehaviorSubject<string | null>(null);
+  public userRoleSubject = new BehaviorSubject<string | null>(null);
   userRole$ = this.userRoleSubject.asObservable();
   private users: User[] = [];
-  private currentUser: User | null = null;
+  currentUser: User | null = null;
 
   /**
    * Constructor del servicio AuthService.
@@ -61,6 +61,9 @@ export class AuthService {
    * @returns `true` si el inicio de sesión es exitoso, `false` de lo contrario.
    */
   login(email: string, password: string): boolean {
+    this.dataService.getUsers().subscribe(users => {
+      this.users = users;
+    });
     const user = this.users.find(u => u.email === email && u.password === password);
     if (user) {
       this.isLoggedIn.next(true);
