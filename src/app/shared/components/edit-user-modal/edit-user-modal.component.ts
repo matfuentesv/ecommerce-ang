@@ -12,6 +12,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
 import {DataService} from "../../../core/services/data/data.service";
 import {User} from "../../models/user";
+import {AuthService} from "../../../core/services/auth/auth.service";
 
 @Component({
   selector: 'app-edit-user-modal',
@@ -59,11 +60,17 @@ export class EditUserModalComponent  implements OnInit{
    */
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
+  /**
+   * varibale que contiene un objeto logeado.
+   */
+  loggedUser: User | null | undefined;
+
   constructor(private dialog: MatDialog,
               private fb: FormBuilder,
               private dataService: DataService,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private authService: AuthService,) {
     this.users = data.users;
     this.objectUser = data.user;
   }
@@ -72,6 +79,7 @@ export class EditUserModalComponent  implements OnInit{
    * Inicializa el componente y configura el formulario del usuario.
    */
   ngOnInit(): void {
+    this.loggedUser = this.authService.getUser();
     this.userForm = this.fb.group({
       firstName: [this.objectUser.firstName, Validators.required],
       lastName: [this.objectUser.lastName, Validators.required],
@@ -124,6 +132,14 @@ export class EditUserModalComponent  implements OnInit{
             duration: 3000,
             panelClass: ['custom-snackbar']
           });
+
+          if(this.loggedUser?.id === this.users[index].id){
+            this.authService.isLoggedIn.next(true);
+            this.authService.userNameSubject.next(this.users[index].firstName);
+            this.authService.userRoleSubject.next(this.users[index].roles.includes('admin') ? 'admin' : 'customer');
+            this.authService.currentUser = this.users[index];
+          }
+
           this.close();
         })
       }
