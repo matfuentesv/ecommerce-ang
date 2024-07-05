@@ -1,8 +1,8 @@
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="userForm">
   <div class="p-3">
     <header class="d-flex justify-content-between align-content-center mb-1">
       <h2 mat-dialog-title>Añadir Usuario</h2>
-      <button (click)="close()" mat-icon-button>
+      <button (click)="close(0)" mat-icon-button>
         <mat-icon>close</mat-icon>
       </button>
     </header>
@@ -94,7 +94,7 @@
     </div>
 
     <div class="modal-footer border-0">
-      <button type="submit" class="pl-2 btn btn-primary w-25" [disabled]="userForm.invalid" >Añadir</button>
+      <button type="submit" (click)="onSubmit()" class="pl-2 btn btn-primary w-25" [disabled]="userForm.invalid" >Añadir</button>
     </div>
 
   </div>

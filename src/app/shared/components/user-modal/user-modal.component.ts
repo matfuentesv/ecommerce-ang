@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
 import { MatInputModule } from "@angular/material/input";
@@ -74,7 +74,8 @@ export class UserModalComponent implements OnInit {
               private fb: FormBuilder,
               private dataService: DataService,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              public dialogRef: MatDialogRef<UserModalComponent>) {
     this.user = data.users;
   }
 
@@ -83,13 +84,13 @@ export class UserModalComponent implements OnInit {
    */
   ngOnInit(): void {
     this.userForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      rut: ['', [Validators.required, RutValidatorDirective.validate]],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
-      address: ['', Validators.required],
-      password: ['', [
+      firstName: ['Matias', Validators.required],
+      lastName: ['xxx', Validators.required],
+      rut: ['19033397-3', [Validators.required, RutValidatorDirective.validate]],
+      email: ['maa@gmail.com', [Validators.required, Validators.email]],
+      phone: ['11111', Validators.required],
+      address: ['xxx', Validators.required],
+      password: ['M4t14s01', [
         Validators.required,
         Validators.pattern('^(?=.*[A-Z])(?=.*\\d).{6,18}$'),
         Validators.minLength(6),
@@ -104,9 +105,10 @@ export class UserModalComponent implements OnInit {
   /**
    * Cierra el modal de usuario.
    */
-  close() {
-    this.dialog.closeAll();
+  close(value: any) {
+    this.dialogRef.close(value);
   }
+
 
   /**
    * Maneja el envío del formulario del usuario.
@@ -134,7 +136,7 @@ export class UserModalComponent implements OnInit {
           duration: 3000,
           panelClass: ['custom-snackbar']
         });
-        this.close();
+        this.close(1);
       })
     }
   }

@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogTitle} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatDialogTitle} from "@angular/material/dialog";
 import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
@@ -70,7 +70,8 @@ export class EditUserModalComponent  implements OnInit{
               private dataService: DataService,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private snackBar: MatSnackBar,
-              private authService: AuthService,) {
+              private authService: AuthService,
+              public dialogRef: MatDialogRef<EditUserModalComponent>) {
     this.users = data.users;
     this.objectUser = data.user;
   }
@@ -102,9 +103,10 @@ export class EditUserModalComponent  implements OnInit{
   /**
    * Cierra el modal de usuario.
    */
-  close() {
-    this.dialog.closeAll();
+  close(value: any) {
+    this.dialogRef.close(value);
   }
+
 
   /**
    * Maneja el envío del formulario del usuario.
@@ -140,7 +142,7 @@ export class EditUserModalComponent  implements OnInit{
             this.authService.currentUser = this.users[index];
           }
 
-          this.close();
+          this.close(1);
         })
       }
 

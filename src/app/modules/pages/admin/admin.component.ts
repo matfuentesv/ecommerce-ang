@@ -97,7 +97,7 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   displayedColumns: string[] = ['firstName', 'lastName', 'rut', 'email', 'phone', 'address', 'roles', 'edit', 'delete'];
-  productDisplayedColumns: string[] = ['name', 'price', 'discount', 'description', 'category', 'quantity', 'edit', 'delete'];
+  productDisplayedColumns: string[] = ['name', 'price', 'discount', 'description', 'category', 'quantity'];
 
   dataSource = new MatTableDataSource<User>();
   productDataSource = new MatTableDataSource<Products>();
@@ -269,20 +269,24 @@ export class AdminComponent implements OnInit, AfterViewInit, AfterViewChecked {
   }
 
   openModal() {
-    const dialogRef = this.dialog.open(UserModalComponent, { data: { users: this.user } });
-    dialogRef.afterClosed().subscribe(result => {
-      this.ngZone.run(() => {
-        this.loadData();
-      });
+    const dialogRef = this.dialog.open(UserModalComponent, { data: { users: this.user },disableClose: true });
+    dialogRef.afterClosed().subscribe((rsp) => {
+     if(rsp ===1){
+       this.ngZone.run(() => {
+         this.loadData();
+       });
+     }
     });
   }
 
   editElement(object: User) {
     const dialogRef = this.dialog.open(EditUserModalComponent, { data: { users: this.user, user: object }, disableClose: true });
     dialogRef.afterClosed().subscribe(result => {
-      this.ngZone.run(() => {
-        this.loadData();
-      });
+      if(result ===1){
+        this.ngZone.run(() => {
+          this.loadData();
+        });
+      }
     });
   }
 
