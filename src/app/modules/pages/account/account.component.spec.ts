@@ -40,11 +40,11 @@ describe('AccountComponent', () => {
     const form = component.accountForm;
     form.controls['firstName'].setValue('');
     form.controls['lastName'].setValue('');
+    form.controls['rut'].setValue('');
     form.controls['email'].setValue('');
     form.controls['phone'].setValue('');
     form.controls['address'].setValue('');
     form.controls['password'].setValue('');
-    form.controls['confirmPassword'].setValue('');
     expect(form.valid).toBeFalse();
   });
 
@@ -52,11 +52,11 @@ describe('AccountComponent', () => {
     const form = component.accountForm;
     form.controls['firstName'].setValue('John');
     form.controls['lastName'].setValue('Doe');
+    form.controls['rut'].setValue('19033434-1');
     form.controls['email'].setValue('john.doe@example.com');
     form.controls['phone'].setValue('1234567890');
     form.controls['address'].setValue('123 Main St');
     form.controls['password'].setValue('Password1');
-    form.controls['confirmPassword'].setValue('Password1');
     expect(form.valid).toBeTrue();
   });
 
@@ -66,10 +66,10 @@ describe('AccountComponent', () => {
     form.controls['firstName'].setValue('John');
     form.controls['lastName'].setValue('Doe');
     form.controls['email'].setValue('john.doe@example.com');
+    form.controls['rut'].setValue('19033434-1');
     form.controls['phone'].setValue('1234567890');
     form.controls['address'].setValue('123 Main St');
     form.controls['password'].setValue('Password1');
-    form.controls['confirmPassword'].setValue('Password1');
     fixture.nativeElement.querySelector('form').dispatchEvent(new Event('submit'));
     expect(component.onSubmit).toHaveBeenCalled();
   });

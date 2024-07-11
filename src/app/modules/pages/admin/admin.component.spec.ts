@@ -4,6 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import {DataService} from "../../../core/services/data/data.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
@@ -15,7 +16,8 @@ describe('AdminComponent', () => {
         HttpClientTestingModule,
         ReactiveFormsModule,
         RouterTestingModule,
-        AdminComponent
+        AdminComponent,
+        BrowserAnimationsModule
       ],
       providers: [DataService]
     })
